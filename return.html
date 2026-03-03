@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Returns & Exchange</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#f6f2f7;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+    background:linear-gradient(90deg,#8e2de2,#c471ed);
+    padding:12px 0;
+    text-align:center;
+    color:white;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title{
+    text-align:center;
+    margin:40px 0 20px;
+}
+
+.page-title h2{
+    font-size:26px;
+    color:#d92f8f;
+    margin-bottom:8px;
+}
+
+.page-title p{
+    font-size:14px;
+    color:#555;
+}
+
+/* ===== POLICY BOX ===== */
+.policy-box{
+    width:55%;
+    margin:20px auto 60px;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    border:2px solid #f078ca;
+    line-height:1.6;
+    font-size:14px;
+    color:#444;
+}
+
+.policy-box h4{
+    color:#cb399d;
+    margin:15px 0 8px;
+}
+
+.policy-box p{
+    margin-bottom:10px;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-section{
+    width:60%;
+    margin:0 auto 60px;
+}
+
+.faq-item{
+    background:#eddcf5;
+    padding:16px 25px;
+    border-radius:30px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.faq-item:hover{
+    background:#e4c9f0;
+}
+
+.faq-question{
+    font-size:14px;
+    color:#bc3491;
+    font-weight:500;
+}
+
+.faq-icon{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:#fff;
+    color:#c5368c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.faq-answer{
+    display:none;
+    padding:10px 20px;
+    font-size:13px;
+    color:#555;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    background:linear-gradient(90deg,#8e2de2,#c471ed);
+    color:white;
+    padding:25px;
+    text-align:center;
+    font-size:14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+    .policy-box,
+    .faq-section{
+        width:90%;
+    }
+}
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* TOP HEADER */
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 40px;
+    background:#fff;
+}
+
+/* LOGO */
+.logo a{
+    font-size:24px;
+    font-weight:700;
+    text-decoration:none;
+    color:#c93e86;
+}
+
+/* SEARCH BOX */
+.search-box{
+    display:flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:20px;
+    padding:5px 10px;
+    background:#f5f5f5;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    background:transparent;
+    padding:5px 10px;
+    width:220px;
+}
+
+.search-box button{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* HEADER ICONS */
+.header-icons .icon{
+    margin-left:15px;
+    text-decoration:none;
+    font-size:20px;
+}
+
+/* NAVBAR MAIN */
+.navbar{
+    background: linear-gradient(90deg,#d74b9a,#f4409a);
+    padding:12px 0;
+}
+
+/* NAV MENU (IMPORTANT FIX) */
+.nav-menu{
+    list-style:none;      /* REMOVE BULLETS */
+    display:flex;         /* HORIZONTAL MENU */
+    justify-content:center;
+    align-items:center;
+    gap:35px;
+}
+
+/* NAV LINKS */
+.nav-menu li{
+    position:relative;
+}
+
+.nav-menu li a{
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:1px;
+    padding:8px 10px;
+    display:block;
+    transition:0.3s;
+}
+
+.nav-menu li a:hover{
+    color:#ffe0f7;
+}
+
+/* DROPDOWN MENU */
+.dropdown{
+    position:absolute;
+    top:40px;
+    left:0;
+    background:#ffffff;
+    min-width:180px;
+    border-radius:8px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    display:none;
+    flex-direction:column;
+    z-index:1000;
+}
+
+/* DROPDOWN LINKS */
+.dropdown a{
+    color:#444 !important;
+    padding:10px 15px;
+    font-size:13px;
+    border-bottom:1px solid #f0f0f0;
+}
+
+.dropdown a:hover{
+    background:#f9e6ff;
+    color:#e4398f !important;
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.nav-menu li:hover .dropdown{
+    display:flex;
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+<body>
+
+
+<!-- TOP HEADER -->
+<header class="top-header">
+  
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">Luxe Beauty</a>
+  </div>
+
+  <!-- SEARCH BAR CENTER -->
+  <div class="search-box">
+    <input type="text" placeholder="Search for Sheet Mask">
+    <button>🔍</button>
+  </div>
+
+  <!-- ICONS RIGHT -->
+  <div class="header-icons">
+    <a href="Register Page - Luxe Beauty.html" class="icon">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <ul class="nav-menu">
+
+    <li>
+      <a href="skincare.html">SKIN CARE ▾</a>
+      <div class="dropdown">
+        <a href="fashwash.html">Face Wash</a>
+        <a href="cleaner.html">Cleanser</a>
+        <a href="serum.html">Serum</a>
+        <a href="mosturizer.html">Moisturizer</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="makeup.html">MAKEUP ▾</a>
+      <div class="dropdown">
+        <a href="foundation.html">Foundation</a>
+        <a href="lipstick.html">Lipstick</a>
+        <a href="cancelar.html">Concealer</a>
+        <a href="blush.html">Blush</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampo.html">Shampoo</a>
+        <a href="hair-oil.html">Hair Oil</a>
+        <a href="conditonar.html">Conditioner</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="personal.html">PERSONAL CARE ▾</a>
+      <div class="dropdown">
+        <a href="bodywash.html">Body Wash</a>
+        <a href="beauty-tool.html">Beauty Tool</a>
+      </div>
+    </li>
+<li>
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+    <li><a href="review.html">REVIEWS</a></li>
+    <li><a href="track.html">TRACK YOUR ORDER</a></li>
+
+  </ul>
+</nav>
+
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+    <h2>Returns & Exchange</h2>
+    <p>Returns and Exchange requests will be catered in the following 2 Cases.</p>
+</div>
+
+<!-- POLICY CONTENT BOX -->
+<div class="policy-box">
+
+<h4>Case 1: Damaged, Broken, Leaked, Incorrect, or Missing Item</h4>
+<p>• Claims must be submitted within 24 hours of delivery.</p>
+<p>• Provide clear images of product and packaging.</p>
+<p>• Product must be unused and in original packaging.</p>
+<p>• Refund or replacement will be processed after verification.</p>
+
+<h4>Case 2: Exchange or Change of Mind</h4>
+<p>• Product must be returned in original condition.</p>
+<p>• Delivery charges may apply for exchanges.</p>
+<p>• Exchange will be processed after quality check.</p>
+
+<h4>Case 3: Out-of-Stock Refunds</h4>
+<p>• If a product is out of stock, refund will be processed.</p>
+<p>• Refund takes 5-7 working days.</p>
+
+<h4>Timelines</h4>
+<p>• Claims must be raised within 24 hours of delivery.</p>
+<p>• Complete resolution may take 5-7 working days.</p>
+
+</div>
+
+<!-- FAQ SECTION -->
+<div class="faq-section">
+
+<div class="faq-item">
+<div class="faq-question">What payment methods do you offer?</div>
+<div class="faq-icon">+</div>
+</div>
+<div class="faq-answer">We accept Cash on Delivery and Online Payments.</div>
+
+<div class="faq-item">
+<div class="faq-question">What are the delivery charges?</div>
+<div class="faq-icon">+</div>
+</div>
+<div class="faq-answer">Delivery charges vary based on location.</div>
+
+<div class="faq-item">
+<div class="faq-question">When will I receive my order?</div>
+<div class="faq-icon">+</div>
+</div>
+<div class="faq-answer">Orders are delivered within 3-5 working days.</div>
+
+<div class="faq-item">
+<div class="faq-question">Can I exchange a product?</div>
+<div class="faq-icon">+</div>
+</div>
+<div class="faq-answer">Yes, exchanges are allowed under policy terms.</div>
+
+</div>
+<!-- PROFESSIONAL FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-col">
+      <h2 class="footer-logo">Luxe Beauty</h2>
+      <p>Your trusted beauty store for skincare, makeup & fragrance.
+      Discover luxury beauty products at affordable prices.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="makeup.html">Makeup</a></li>
+        <li><a href="skincare.html">Skin Care</a></li>
+        <li><a href="hair.html">Hair Care</a></li>
+        <li><a href="fragrance.html">Fragrance</a></li>
+      </ul>
+    </div>
+
+    <!-- CUSTOMER SUPPORT -->
+    <div class="footer-col">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="support.html">Help Center</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+        <li><a href="return.html">Returns & Refunds</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-col">
+      <h3>Subscribe</h3>
+      <p>Get updates on new products & offers</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+
+      <div class="social-icons">
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    <p>© 2026 Luxe Beauty. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  color:white;
+  padding:50px 40px 20px;
+  margin-top:40px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+
+.footer-logo{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+}
+
+.footer-col ul li a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  padding-left:5px;
+  opacity:0.9;
+}
+
+.newsletter{
+  display:flex;
+  margin-top:10px;
+}
+
+.newsletter input{
+  padding:10px;
+  border:none;
+  outline:none;
+  border-radius:6px 0 0 6px;
+  width:100%;
+}
+
+.newsletter button{
+  background:#fff;
+  color:#ff4fa3;
+  border:none;
+  padding:10px 15px;
+  border-radius:0 6px 6px 0;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.social-icons{
+  margin-top:15px;
+  font-size:20px;
+  display:flex;
+  gap:15px;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.3);
+  margin-top:30px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .footer{
+    text-align:center;
+  }
+  .newsletter{
+    flex-direction:column;
+  }
+  .newsletter input{
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .newsletter button{
+    border-radius:6px;
+  }
+}
+</style>
+
+
+<script>
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item)=>{
+    item.addEventListener("click",()=>{
+        const answer = item.nextElementSibling;
+        const icon = item.querySelector(".faq-icon");
+
+        if(answer.style.display === "block"){
+            answer.style.display="none";
+            icon.textContent="+";
+        } else{
+            answer.style.display="block";
+            icon.textContent="-";
+        }
+    });
+});
+</script>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+</body>
+</html>

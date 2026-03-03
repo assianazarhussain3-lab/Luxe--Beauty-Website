@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Luxe Beauty</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+}
+
+/* REMOVE TOP GAP */
+main{
+  margin:0;
+  padding:0;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-wrapper{
+  background:#f3f3f3;
+  padding:80px 0 60px;
+}
+
+.contact-container{
+  width:85%;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:60px;
+}
+
+/* LEFT TEXT */
+.contact-left h1{
+  font-size:46px;
+  color:#2d0a3a;
+  line-height:1.3;
+  font-weight:600;
+}
+
+.contact-left span{
+  color:#eb72aa;
+}
+
+.contact-info{
+  margin-top:25px;
+  color:#777;
+  font-size:15px;
+}
+
+.contact-info p{
+  margin-bottom:10px;
+}
+
+/* RIGHT FORM */
+.contact-right{
+  width:420px;
+}
+
+.contact-right h3{
+  margin-bottom:15px;
+  font-size:18px;
+  color:#111;
+}
+
+.form-row{
+  display:flex;
+  gap:15px;
+  margin-bottom:12px;
+}
+
+input, textarea{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#eeeeee;
+  font-size:14px;
+  outline:none;
+}
+
+textarea{
+  height:110px;
+  resize:none;
+}
+
+.contact-btn{
+  margin-top:15px;
+  background:#e764ae;
+  border:none;
+  padding:12px 26px;
+  border-radius:25px;
+  color:white;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-btn:hover{
+  background:#f863c6;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-section{
+  background:#f5f5f5;
+  padding:60px 0 80px;
+  text-align:center;
+}
+
+.faq-title{
+  font-size:24px;
+  color:#d234bf;
+  font-weight:600;
+}
+
+.faq-sub{
+  color:#888;
+  margin-bottom:30px;
+  font-size:14px;
+}
+
+.faq-container{
+  width:55%;
+  margin:auto;
+}
+
+.faq-item{
+  background:#eadcf4;
+  margin-bottom:12px;
+  border-radius:20px;
+  padding:14px 18px;
+  cursor:pointer;
+  text-align:left;
+  transition:0.3s;
+}
+
+.faq-item:hover{
+  background:#e2c8f3;
+}
+
+.faq-question{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  color:#4b0070;
+  font-weight:500;
+}
+
+.faq-answer{
+  display:none;
+  margin-top:10px;
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .contact-container{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .contact-right{
+    width:100%;
+  }
+  .faq-container{
+    width:90%;
+  }
+  .contact-left h1{
+    font-size:34px;
+  }
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+
+<body>
+<!-- ===== TOP HEADER ===== -->
+<header class="top-header">
+  
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">Luxe Beauty</a>
+  </div>
+
+  <!-- SEARCH BAR -->
+  <div class="search-box">
+    <input type="text" placeholder="Search for products...">
+    <button>🔍</button>
+  </div>
+
+  <!-- ICONS -->
+  <div class="header-icons">
+    <a href="register.html">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+
+</header>
+
+<!-- ===== PINK NAVBAR ===== -->
+<nav class="navbar">
+  <ul class="nav-menu">
+
+    <li>
+      <a href="skincare.html">SKIN CARE ▾</a>
+      <div class="dropdown">
+        <a href="facewash.html">Face Wash</a>
+        <a href="cleanser.html">Cleanser</a>
+        <a href="serum.html">Serum</a>
+        <a href="moisturizer.html">Moisturizer</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="makeup.html">MAKEUP ▾</a>
+      <div class="dropdown">
+        <a href="foundation.html">Foundation</a>
+        <a href="lipstick.html">Lipstick</a>
+        <a href="concealer.html">Concealer</a>
+        <a href="blush.html">Blush</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampoo.html">Shampoo</a>
+        <a href="conditioner.html">Conditioner</a>
+        <a href="hair-oil.html">Hair Oil</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+<li class="nav-item">
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+    <li><a href="review.html">REVIEWS</a></li>
+    <li><a href="track.html">TRACK YOUR ORDER</a></li>
+
+  </ul>
+</nav>
+<!-- 🔴 IMPORTANT: APNA HEADER + NAVBAR YAHA PASTE KARO -->
+<!-- (Same jo index.html me hai) -->
+
+<main>
+
+<!-- CONTACT SECTION -->
+<section class="contact-wrapper">
+  <div class="contact-container">
+
+    <!-- LEFT -->
+    <div class="contact-left">
+      <h1>
+        You're Not A Stranger,<br>
+        <span>Let's Talk.</span>
+      </h1>
+
+      <div class="contact-info">
+        <p>Email: support@luxebeauty.pk</p>
+        <p>Phone Number: UAN: 111-LUXE (111-444-439)</p>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-right">
+      <h3>Send Us A message</h3>
+
+      <div class="form-row">
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+      </div>
+
+      <textarea placeholder="Tell Us!"></textarea>
+      <button class="contact-btn">Explore Careers</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <h2 class="faq-title">FAQ's</h2>
+  <p class="faq-sub">Here to guide you</p>
+
+  <div class="faq-container">
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        What payment methods do you offer?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        We offer Cash on Delivery, Debit/Credit Card and Bank Transfer.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        When will I receive my order?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Orders are delivered within 3-5 working days across Pakistan.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        Can I exchange a product?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, exchanges are available within 7 days if the product is unused.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        Are the products original?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, we guarantee 100% authentic and original beauty products.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<script>
+function toggleFAQ(element){
+  const answer = element.querySelector(".faq-answer");
+  answer.style.display = answer.style.display === "block" ? "none" : "block";
+}
+</script>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h2 class="footer-logo">Luxe Beauty</h2>
+      <p>Your trusted beauty store for skincare, makeup & fragrance products at affordable prices.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="skincare.html">Skin Care</a></li>
+        <li><a href="makeup.html">Makeup</a></li>
+        <li><a href="fragrance.html">Fragrance</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="track.html">Track Order</a></li>
+        <li><a href="return.html">Returns & Exchange</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="admin.html">Admin</a></li>
+
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Subscribe</h3>
+      <p>Get updates on new arrivals & offers</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Luxe Beauty. All Rights Reserved.</p>
+  </div>
+</footer>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+</body>
+</html>

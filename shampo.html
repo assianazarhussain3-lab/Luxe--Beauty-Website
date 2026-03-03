@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation - Luxe Beauty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* TOP HEADER */
+.top-header{
+  background:#e8ddea;
+  padding:15px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff4fa3;
+}
+
+.search-box{
+  width:40%;
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+  padding:12px 20px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  background:#f2f2f2;
+  font-size:14px;
+}
+
+/* ICONS */
+.icons{
+  display:flex;
+  gap:20px;
+  font-size:18px;
+  color:#555;
+}
+
+/* NAVBAR */
+.navbar{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  padding:0 40px;
+}
+
+.nav-menu{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+
+.nav-menu li{
+  position:relative;
+}
+
+.nav-menu a{
+  display:block;
+  padding:18px 5px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+}
+
+.nav-menu a:hover{
+  opacity:0.9;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:absolute;
+  top:60px;
+  left:0;
+  background:#f3e6eb;
+  min-width:180px;
+  border-radius:12px;
+  display:none;
+  overflow:hidden;
+}
+
+.dropdown a{
+  color:#333;
+  padding:12px 15px;
+  display:block;
+  border-bottom:1px solid #e5cbd6;
+  font-weight:500;
+}
+
+.dropdown a:hover{
+  background:#ffd6ea;
+}
+
+.nav-menu li:hover .dropdown{
+  display:block;
+}
+
+/* PAGE HEADER */
+.page-title{
+  background:#f4e2ea;
+  padding:40px;
+  text-align:center;
+}
+
+.page-title h1{
+  color:#ff4fa3;
+  font-size:32px;
+}
+
+/* PRODUCT SECTION */
+.products{
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  background:#f7f2f5;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card h3{
+  margin:10px 0;
+  font-size:16px;
+}
+
+.price{
+  color:#ff4fa3;
+  font-weight:bold;
+}
+
+.btn{
+  margin-top:10px;
+  display:block;
+  background:#ff4fa3;
+  color:white;
+  padding:8px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .top-header{
+    flex-direction:column;
+    gap:10px;
+  }
+  .search-box{
+    width:100%;
+  }
+  .nav-menu{
+    flex-wrap:wrap;
+    gap:15px;
+  }
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to right,#ff1493,#ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+<body>
+<!-- TOP HEADER -->
+<header class="top-header">
+  
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">Luxe Beauty</a>
+  </div>
+
+  <!-- SEARCH BAR CENTER -->
+  <div class="search-box">
+    <input type="text" placeholder="Search for Sheet Mask">
+    <button>🔍</button>
+  </div>
+
+  <!-- ICONS RIGHT -->
+  <div class="header-icons">
+    <a href="Register Page - Luxe Beauty.html" class="icon">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <ul class="nav-menu">
+
+    <li>
+      <a href="skincare.html">SKIN CARE ▾</a>
+      <div class="dropdown">
+        <a href="fashwash.html">Face Wash</a>
+        <a href="cleaner.html">Cleanser</a>
+        <a href="serum.html">Serum</a>
+        <a href="mosturizer.html">Moisturizer</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="makeup.html">MAKEUP ▾</a>
+      <div class="dropdown">
+        <a href="foundation.html">Foundation</a>
+        <a href="lipstick.html">Lipstick</a>
+        <a href="cancelar.html">Concealer</a>
+        <a href="blush.html">Blush</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampo.html">Shampoo</a>
+        <a href="hair-oil.html">Hair Oil</a>
+        <a href="conditonar.html">Conditioner</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="personal.html">PERSONAL CARE ▾</a>
+      <div class="dropdown">
+        <a href="bodywash.html">Body Wash</a>
+        <a href="beauty-tool.html">Beauty Tool</a>
+      </div>
+    </li>
+ <li>
+
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+    <li><a href="review.html">REVIEWS</a></li>
+    <li><a href="track.html">TRACK YOUR ORDER</a></li>
+
+  </ul>
+</nav>
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+  <h1>Shampo Collection</h1>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205517.png">
+    <h3>L'Oreal Elvive Hyaluron Shampoo 360Ml</h3>
+    <p class="price">Rs. 9,90</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205534.png">
+    <h3>Tresemme Shampoo Keratin Smooth & Straight - 170Ml</h3>
+    <p class="price">Rs. 2,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205559.png">
+    <h3>Sunsilk thick & Long Shampoo 660ml</h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205542.png">
+    <h3>Sunsilk - Rosemary And Argan Oil Shampoo - 380ml</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205605.png">
+    <h3>Dove - Hairfall Rescue Shampoo - 700ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205623.png">
+    <h3>Lifebuoy Shampoo Herbal Strong 175Ml</h3>
+    <p class="price">Rs. 3,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205633.png">
+    <h3>L'Oreal Paris Elvive 6 Oil Nourish Shampoo 360 Ml - For Dull & Dry Hair</h3>
+    <p class="price">Rs. 8,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205640.png">
+    <h3>Saeed Ghani - Argan Oil Shampoo 200Ml</h3>
+    <p class="price">Rs. 5,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205650.png">
+    <h3>L'Oreal Paris Dream Long Straight 72H Shampoo 175Ml</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205706.png">
+    <h3>Shiseido - Fino Premium Touch Hair Shampoo - 550Ml</h3>
+    <p class="price">Rs. 5,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205733.png">
+    <h3>Dove - Hairfall Rescue Shampoo - 360ml</h3>
+    <p class="price">Rs. 8,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205739.png">
+    <h3>Vince - Biotin & Keratin Shampoo - 230Ml</h3>
+    <p class="price">Rs. 1,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205745.png">
+    <h3>Saeed Ghani - Mughziat Shampoo 200 Ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205800.png">
+    <h3>Herbal Essences Shampoo Daily Detox Shine 400Ml</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205818.png">
+    <h3>Hair Pantry - Clear Anti Dandruff Shampoo - 250Ml</h3>
+    <p class="price">Rs. 1,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205824.png">
+    <h3>Clear Shampoo Complete Clean - 380Ml</h3>
+    <p class="price">Rs. 7,69</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205831.png">
+    <h3>Herbal Essences Shampoo White Grapefruit & Mint 400ML</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205841.png">
+    <h3>Saeed Ghani - Anti Hairfall Onion Shampoo</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205853.png">
+    <h3>Hair Pantry - Biogain Shampoo For Hairfall 250Ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205919.png">
+    <h3>Mielle - Rosemary Mint Strengthening Shampoo</h3>
+    <p class="price">Rs. 4,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+</section>
+<!-- PROFESSIONAL FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-col">
+      <h2 class="footer-logo">Luxe Beauty</h2>
+      <p>Your trusted beauty store for skincare, makeup & fragrance.
+      Discover luxury beauty products at affordable prices.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="makeup.html">Makeup</a></li>
+        <li><a href="skincare.html">Skin Care</a></li>
+        <li><a href="hair.html">Hair Care</a></li>
+        <li><a href="fragrance.html">Fragrance</a></li>
+      </ul>
+    </div>
+
+    <!-- CUSTOMER SUPPORT -->
+    <div class="footer-col">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="support.html">Help Center</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+        <li><a href="return.html">Returns & Refunds</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-col">
+      <h3>Subscribe</h3>
+      <p>Get updates on new products & offers</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+
+      <div class="social-icons">
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    <p>© 2026 Luxe Beauty. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  color:white;
+  padding:50px 40px 20px;
+  margin-top:40px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+
+.footer-logo{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+}
+
+.footer-col ul li a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  padding-left:5px;
+  opacity:0.9;
+}
+
+.newsletter{
+  display:flex;
+  margin-top:10px;
+}
+
+.newsletter input{
+  padding:10px;
+  border:none;
+  outline:none;
+  border-radius:6px 0 0 6px;
+  width:100%;
+}
+
+.newsletter button{
+  background:#fff;
+  color:#ff4fa3;
+  border:none;
+  padding:10px 15px;
+  border-radius:0 6px 6px 0;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.social-icons{
+  margin-top:15px;
+  font-size:20px;
+  display:flex;
+  gap:15px;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.3);
+  margin-top:30px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .footer{
+    text-align:center;
+  }
+  .newsletter{
+    flex-direction:column;
+  }
+  .newsletter input{
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .newsletter button{
+    border-radius:6px;
+  }
+}
+</style>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+const cartContent = document.querySelector(".cart-content");
+const cartTotal = document.querySelector(".cart-total strong");
+
+let cart = JSON.parse(localStorage.getItem("luxeCart")) || [];
+let total = 0;
+
+// OPEN CART
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// CLOSE CART
+function closeCartFunc(){
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+closeCart.addEventListener("click", closeCartFunc);
+overlay.addEventListener("click", closeCartFunc);
+
+// SAVE CART
+function saveCart(){
+  localStorage.setItem("luxeCart", JSON.stringify(cart));
+}
+
+// UPDATE TOTAL
+function updateTotal(){
+  total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+  cartTotal.innerText = "Rs. " + total;
+}
+
+// RENDER CART
+function renderCart(){
+  cartContent.innerHTML = "";
+
+  if(cart.length === 0){
+    cartContent.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+    cartTotal.innerText = "Rs. 0";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.gap = "10px";
+    div.style.marginBottom = "15px";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <img src="${item.image}" width="60" height="60" style="border-radius:8px;">
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:bold">${item.name}</div>
+        <div style="color:#ff4fa3;font-weight:bold">Rs. ${item.price}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+          <button class="minus">-</button>
+          <span>${item.qty}</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    `;
+
+    // PLUS
+    div.querySelector(".plus").onclick = () => {
+      cart[index].qty++;
+      saveCart();
+      renderCart();
+    };
+
+    // MINUS
+    div.querySelector(".minus").onclick = () => {
+      cart[index].qty--;
+      if(cart[index].qty <= 0){
+        cart.splice(index,1);
+      }
+      saveCart();
+      renderCart();
+    };
+
+    cartContent.appendChild(div);
+  });
+
+  updateTotal();
+}
+
+// ADD TO CART
+document.querySelectorAll(".btn").forEach(btn => {
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    const card = this.closest(".card");
+    const name = card.querySelector("h3").innerText;
+    const priceText = card.querySelector(".price").innerText;
+    const price = parseInt(priceText.replace(/[^0-9]/g, ""));
+    const image = card.querySelector("img").src;
+
+    const existing = cart.find(item => item.name === name);
+
+    if(existing){
+      existing.qty++;
+    }else{
+      cart.push({
+        name: name,
+        price: price,
+        image: image,
+        qty: 1
+      });
+    }
+
+    saveCart();
+    renderCart();
+
+    cartSidebar.classList.add("active");
+    overlay.classList.add("active");
+  });
+});
+
+// LOAD CART ON PAGE OPEN
+renderCart();
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,3144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation - Luxe Beauty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* TOP HEADER */
+.top-header{
+  background:#e8ddea;
+  padding:15px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff4fa3;
+}
+
+.search-box{
+  width:40%;
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+  padding:12px 20px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  background:#f2f2f2;
+  font-size:14px;
+}
+
+/* ICONS */
+.icons{
+  display:flex;
+  gap:20px;
+  font-size:18px;
+  color:#555;
+}
+
+/* NAVBAR */
+.navbar{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  padding:0 40px;
+}
+
+.nav-menu{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+
+.nav-menu li{
+  position:relative;
+}
+
+.nav-menu a{
+  display:block;
+  padding:18px 5px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+}
+
+.nav-menu a:hover{
+  opacity:0.9;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:absolute;
+  top:60px;
+  left:0;
+  background:#f3e6eb;
+  min-width:180px;
+  border-radius:12px;
+  display:none;
+  overflow:hidden;
+}
+
+.dropdown a{
+  color:#333;
+  padding:12px 15px;
+  display:block;
+  border-bottom:1px solid #e5cbd6;
+  font-weight:500;
+}
+
+.dropdown a:hover{
+  background:#ffd6ea;
+}
+
+.nav-menu li:hover .dropdown{
+  display:block;
+}
+
+/* PAGE HEADER */
+.page-title{
+  background:#f4e2ea;
+  padding:40px;
+  text-align:center;
+}
+
+.page-title h1{
+  color:#ff4fa3;
+  font-size:32px;
+}
+
+/* PRODUCT SECTION */
+.products{
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  background:#f7f2f5;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card h3{
+  margin:10px 0;
+  font-size:16px;
+}
+
+.price{
+  color:#ff4fa3;
+  font-weight:bold;
+}
+
+.btn{
+  margin-top:10px;
+  display:block;
+  background:#ff4fa3;
+  color:white;
+  padding:8px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .top-header{
+    flex-direction:column;
+    gap:10px;
+  }
+  .search-box{
+    width:100%;
+  }
+  .nav-menu{
+    flex-wrap:wrap;
+    gap:15px;
+  }
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to right,#ff1493,#ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+<body>
+<!-- TOP HEADER -->
+<header class="top-header">
+  
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">Luxe Beauty</a>
+  </div>
+
+  <!-- SEARCH BAR CENTER -->
+  <div class="search-box">
+    <input type="text" placeholder="Search for Sheet Mask">
+    <button>🔍</button>
+  </div>
+
+  <!-- ICONS RIGHT -->
+  <div class="header-icons">
+    <a href="Register Page - Luxe Beauty.html" class="icon">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <ul class="nav-menu">
+
+    <li>
+      <a href="skincare.html">SKIN CARE ▾</a>
+      <div class="dropdown">
+        <a href="fashwash.html">Face Wash</a>
+        <a href="cleaner.html">Cleanser</a>
+        <a href="serum.html">Serum</a>
+        <a href="mosturizer.html">Moisturizer</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="makeup.html">MAKEUP ▾</a>
+      <div class="dropdown">
+        <a href="foundation.html">Foundation</a>
+        <a href="lipstick.html">Lipstick</a>
+        <a href="cancelar.html">Concealer</a>
+        <a href="blush.html">Blush</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampo.html">Shampoo</a>
+        <a href="hair-oil.html">Hair Oil</a>
+        <a href="conditonar.html">Conditioner</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="personal.html">PERSONAL CARE ▾</a>
+      <div class="dropdown">
+        <a href="bodywash.html">Body Wash</a>
+        <a href="beauty-tool.html">Beauty Tool</a>
+      </div>
+    </li>
+<li class="nav-item">
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+    <li><a href="reviews.html">REVIEWS</a></li>
+    <li><a href="track.html">TRACK YOUR ORDER</a></li>
+
+  </ul>
+</nav>
+
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+  <h1> Collections</h1>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170606.png">
+    <h3>Makeup Revolution Maxi Reloaded Eyeshadow Palette Nudes</h3>
+    <p class="price">Rs. 7,920</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 194822.png">
+    <h3>MUA Blushed Matte Blush Powder - Papaya Whip</h3>
+    <p class="price">Rs. 2,500</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 140343.png">
+    <h3>Maybelline New York Fit Me Mono lipstick, 16 Hr Long Lasting Wear, 40, Proud</h3>
+    <p class="price">Rs. 2,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-11 210958.png">
+    <h3>ELF - High Definition Powder - Soft Luminance</h3>
+    <p class="price">Rs. 3,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162152.png">
+    <h3>Maybelline New York Fit Me Mono Blush, 16 Hr Long Lasting Wear, 40, Proud</h3>
+    <p class="price">Rs. 2,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195915.png">
+    <h3>Maybelline New York Lash Sensational Waterproof Sky High Mascara for Limitless Length</h3>
+    <p class="price">Rs. 3,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162211.png">
+    <h3>Maybelline - Fit Me Mono 20 Blush</h3>
+    <p class="price">Rs. 2,980</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195858.png">
+    <h3>Maybelline - Fit Me Mono 20 Define Powder</h3>
+    <p class="price">Rs. 4,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200312.png">
+    <h3>Lips glossy</h3>
+    <p class="price">Rs. 3,280</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162603.png">
+    <h3>Facial Beauty - Hudamoji 3 In 1 Blusher & Highlighter 01</h3>
+    <p class="price">Rs. 5,09</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162239.png">
+    <h>Makeup Revolution Blush Bomb Cream Blusher Dolly Rose</h3>
+    <p class="price">Rs. 3,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162254.png">
+    <h3>Makeup Revolution X Roxi Cherry BlossomÂ Liquid Blush Duo 2 X 15ml</h3>
+    <p class="price">Rs. 4,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180640.png">
+    <h3>Maybelline New York Fit Me Concealer - 25 Medium</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180654.png">
+    <h3>Maybelline New York Instant Age Rewind Eraser Concealer - 110 Fair</h3>
+    <p class="price">Rs. 3,780</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180702.png">
+    <h>La Girl Pro Conceal Hd Concealer 982 Warm Honey</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180712.png">
+    <h3>L.A Girl Pro Conceal Hd Concealer Dark Cocoa</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180732.png">
+    <h3>NYX Can'T Stop Won'T Stop Concealer (Cswsc07-Natural) 3.50Ml</h3>
+    <p class="price">Rs. 2,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 182912.png">
+    <h3>Glamorous Face - Oil Free Cover Stick</h3>
+    <p class="price">Rs. 399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180810.png">
+    <h3>Bourjois Healthy Mix Clean Concealer - 54 Sun Bronze</h3>
+    <p class="price">Rs. 3,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180821.png">
+    <h3>Open media 1 in modal
+Makeup Revolution Eye Bright Concealer Medium</h3>
+    <p class="price">Rs. 4,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180824.png">
+    <h3>Relove By Revolution Super Concealer Radiant Matte C2 3ml</h3>
+    <p class="price">Rs. 1,812</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180835.png">
+    <h3>Artdeco - Perfect Teint Concealer 5</h3>
+    <p class="price">Rs. 2,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200009.png">
+    <h3></h3>
+    <p class="price">Rs. 5,698</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180925.png">
+    <h3>Zeena Camouflage Concealer Wp 020</h3>
+    <p class="price">Rs. 9,50</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180951.png">
+    <h3>Elf - Hydrating Camo Concealer - 6ml</h3>
+    <p class="price">Rs. 4,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180958.png">
+    <h3>VI'DA - Cover up Concealer</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181007.png">
+    <h3>ZERO Makeup - Blurring Pen</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181015.png">
+    <h3>BBA - Radiant Concealer</h3>
+    <p class="price">Rs. 3,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181337.png">
+    <h3>Tarte Shape Tape Concealer In 29N Light Medium 10M (3194)</h3>
+    <p class="price">Rs. 8,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 182305.png">
+    <h3>L'Oreal Paris Infallible Full Wear More Than Concealer - 327 Cashmere</h3>
+    <p class="price">Rs. 8,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162303.png">
+    <h3>Relove By Revolution Colour Play Blushed Duo Queen</h3>
+    <p class="price">Rs. 1,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162318.png">
+    <h3>Makeup Revolution Mousse Blusher Squeeze Me Soft Pink</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162324.png">
+    <h3>elf-camo liquid blush</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162348.png">
+    <h3>swiss-miss rose blush</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162353.png">
+    <h3>Rimmel Lasting Provo 115 Best Undressed blush</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162404.png">
+    <h3>Haya-Beauty Halal beauty multi use stick blush</h3>
+    <p class="price">Rs. 1,986</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162417.png">
+    <h3>shein Sheglam color bloom dayglow liquid blush</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162422.png">
+    <h3>Lemal blush cheak colors -405 38kg</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162517.png">
+    <h3>AQ Cosmetics BLUSH HIM CrÃ¨me Blush</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162522.png">
+    <h3>Makeup Revolution - Jelly Blush Stick Lip and Cheek Stain</h3>
+    <p class="price">Rs. 3,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162525.png">
+    <h3>Makeup Revolution - Superdewy Liquid Blush Burst</h3>
+    <p class="price">Rs. 3,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162533.png">
+    <h3>BBA - Radiant Liquid Blush</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162538.png">
+    <h3>Huda Beauty - Blush Filter Liquid Blush</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170614.png">
+    <h3>Makeup Revolution Reloaded Palette Iconic Fever</h3>
+    <p class="price">Rs. 2,780</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170620.png">
+    <h>Makeup Revolution Brow Sculpt Kit Dark Brown</h3>
+    <p class="price">Rs. 2,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170627.png">
+    <h3>MUA Pro 6 Pan Palettes Smokey Shadows</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170640.png">
+    <h3>Rimmel Magnifeyes Smoke Edition Shade # 34560754003</h3>
+    <p class="price">Rs. 3,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170647.png">
+    <h3>MUA 15 Shade Palette - Empire Butterfly</h3>
+    <p class="price">Rs. 2,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170656.png">
+    <h3>Makeup Revolution Reloaded Palette Iconic 3.0</h3>
+    <p class="price">Rs. 2,789</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170700.png">
+    <h3>Open media 1 in modal
+Max factor Real Brow Duo Kit - 02 Medium</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170707.png">
+    <h3>Open media 1 in modal
+Lurella - Sweetheart Eyeshadow Palette</h3>
+    <p class="price">Rs. 4,212</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170711.png">
+    <h3>Makeup Revolution Forever Flawless Chilled With Cannabis Sativa Eyeshadow Palette</h3>
+    <p class="price">Rs. 6,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-14 193110.png">
+    <h3>Matte Liquid Foundation</h3>
+    <p class="price">Rs. 1,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192926.png">
+    <h3>Full Coverage Foundation</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193039.png">
+    <h3>HD Foundation</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193033.png">
+    <h3>Zeen Foundation</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193020.png">
+    <h3>Revolution Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193047.png">
+    <h3>Long lasting Foundation</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193116.png">
+    <h3>Joi Foundation</h3>
+    <p class="price">Rs. 4,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193009.png">
+    <h3>Ivory Foundation</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193126.png">
+    <h3>Trouble juno Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192900.png">
+    <h3>HD Foundation</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192803.png">
+    <h3>Miss Rose Foundation</h3>
+    <p class="price">Rs. 1,989</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192940.png">
+    <h3>Caty Foundation</h3>
+    <p class="price">Rs. 4,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193134.png">
+    <h3>Kind And Free Foundation</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192935.png">
+    <h3>fit me Foundation</h3>
+    <p class="price">Rs. 1,296</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193055.png">
+    <h3>Define Foundation</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192949.png">
+    <h3>Essence Foundation</h3>
+    <p class="price">Rs. 5,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192833.png">
+    <h3>Longwear Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193103.png">
+    <h3>Cover foundation Foundation</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170718.png">
+    <h3>Open media 1 in modal
+Makeup Revolution - Pro True Love Eye & Cheek Palette Light-Medium</h3>
+    <p class="price">Rs. 5,698</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170734.png">
+    <h3>Rimmel - London Mini Power Palette 005 Boss Babe</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170749.png">
+    <h3>Sheglam Eyeshadow Palette The Burgundy</h3>
+    <p class="price">Rs. 4,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170816.png">
+    <h3>Makeup Revolution - The Eternal Icon Green Palette</h3>
+    <p class="price">Rs. 4,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170847.png">
+    <h3>Trouble Maker - Big Trouble Shadow Palette</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170851.png">
+    <h3>Trouble Maker - Trouble Shadow Palette</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170901.png">
+    <h3>Miss Rose - New Nude Eyeshadow Palette - 19.7G</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170935.png">
+    <h3>Revolution Pro Regeneration Palette - Revelation</h3>
+    <p class="price">Rs. 4,399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205727.png">
+    <h3>ST London - Velvet Ultra Matt Lipstick - Hyper Brown</h3>
+    <p class="price">Rs. 1,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205636.png">
+    <h3>L'Oreal Paris Infallible Matte Resistance 210 Tropical Vacay</h3>
+    <p class="price">Rs. 2,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205538.png">
+    <h3MUA Velvet Matte Liquid Lip - Devotion></h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205448.png">
+    <h3>MUA Satin Lipstick - Deja Vu</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205510.png">
+    <h3>Zeena- Liquid Matte Tattoo Lipstick 040 Cocoa</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205501.png">
+    <h3>Maybelline Super Stay Matte Ink Liquid Lipstick - 135</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205544.png">
+    <h3>Pupa Milano - I'M Matt Pure Colr Lipstick - Magenta Rose</h3>
+    <p class="price">Rs. 4,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205557.png">
+    <h3>MUA Metallic Liquid Lip - Luster</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+<div class="card">
+    <img src="asset/Screenshot 2026-02-16 192527.png">
+    <h3>Neutrogena Facial Wash Oil Balancing With Lime & Aloe Vera Pump 200Ml</h3>
+    <p class="price">Rs. 2,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192535.png">
+    <h3>Garnier Skin Active Bright Complete Face Wash 100Ml - For Brighter Skin</h3>
+    <p class="price">Rs. 6,58</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192543.png">
+    <h3>Neutrogena Deep Clean Gel Wash - 200 Ml</h3>
+    <p class="price">Rs. 2,2500</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194657.png">
+    <h3>POND's - Bright Beauty Serum - 30ml</h3>
+    <p class="price">Rs. 1,350</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194707.png">
+    <h3>L'Oreal Paris Revitalift 1.5% Hyaluronic Acid Face Serum 15 Ml</h3>
+    <p class="price">Rs. 1,980</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194713.png">
+    <h3>Garnier Fast Clear Serum for Acne Prone Skin - 30ml</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194721.png">
+    <h3>Dr. Rashel Vc Vitamin C Niacinamide & Brightening Primer Serum 100Ml</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194729.png">
+    <h3>Beauty Of Joseon Glow Deep Serum Rice + Arbutin 30Ml</h3>
+    <p class="price">Rs. 4,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194737.png">
+    <h3>Bioaqua - Acne Removaing & Skin Rejuvenating Essence 30Ml</h3>
+    <p class="price">Rs. 5,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194744.png">
+    <h3>Some By Mi Aha, Bha, Pha 30 Days Miracle Serum</h3>
+    <p class="price">Rs. 5,849</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194751.png">
+    <h3>Estelin Rice Firming Multipurpose Face Serum - 30ml</h3>
+    <p class="price">Rs. 1,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194758.png">
+    <h3>Beauty Of Joseon - Glow Serum Propolis + Niacinamide 30Ml</h3>
+    <p class="price">Rs. 4,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194806.png">
+    <h3>Anua 7 Rice Ceramide Hydrating Barrier Serum - 50Ml</h3>
+    <p class="price">Rs. 5,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 210724.png">
+    <h3>Neutrogena Bright Boost Illuminating Serum - 30ml (Near Expiry: Apr 2026)</h3>
+    <p class="price">Rs. 3,000</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194817.png">
+    <h3>Rederm - Wynn Brightening & Depigmentation Serum</h3>
+    <p class="price">Rs. 2,369</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194824.png">
+    <h3>Revolution Skincare 2% Hyaluronic Acid Hydrating Serum 30ml</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201353.png">
+    <h3>POND's - Super Light Gel - 50ml</h3>
+    <p class="price">Rs. 7,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201405.png">
+    <h3>Klean Beauty Hydrating Moisturizer Tube (100Ml)</h3>
+    <p class="price">Rs. 2,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201416.png">
+    <h3>Nivea Moisturizer Cream 60 Ml</h3>
+    <p class="price">Rs. 7,12</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 183445.png">
+    <h3>Cerave Skin Renewing Night Cream 1.7Oz/48G</h3>
+    <p class="price">Rs. 6,480</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201431.png">
+    <h3>Dr.Rashel Aloe Vera Skin Natural Moisture Cream 50G</h3>
+    <p class="price">Rs. 9,59</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201436.png">
+    <h3>Beauty of Joseon Red Bean Water Gel/100ml</h3>
+    <p class="price">Rs. 4,399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201449.png">
+    <h3>Conatural - Aloe Vera Gel</h3>
+    <p class="price">Rs. 1,442</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201455.png">
+    <h3>Klean Beauty - Glass Skin Sleeping Mask - 50ml</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201500.png">
+    <h3>B&B Derma - Watermelon Cool Peptide Gel</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201512.png">
+    <h3>Klean Beauty - Glass Skin Sleeping Mask - 50ml</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201518.png">
+    <h3>Olay Regenerist Glow Priming Moisturiser 50Ml</h3>
+    <p class="price">Rs. 4,7996</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201525.png">
+    <h3>Elmore - Soft Whitening Moisturizing Cream - 200GM</h3>
+    <p class="price">Rs. 6,73</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201532.png">
+    <h3>Conatural - Rose Face Gel</h3>
+    <p class="price">Rs. 1,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201542.png">
+    <h3>B&B Derma - Squalane + Hyaluronic Glass Moisturizer</h3>
+    <p class="price">Rs. 1,000</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201606.png">
+    <h3>L'Oreal Paris - Collagen Expert: Moisture Filler Cream 50ml For Instant Hydration for 24 Hours</h3>
+    <p class="price">Rs. 2,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201702.png">
+    <h3>B&B Derma - Hydrous Gel Moisturizer</h3>
+    <p class="price">Rs. 1,069</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-16 195946.png">
+    <h3>Klean Beauty Oil to Milk Cleanser</h3>
+    <p class="price">Rs. 2,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 195954.png">
+    <h3>Skin1004 Madagascar Centella Light Cleansing Oil/200ml</h3>
+    <p class="price">Rs. 5,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200004.png">
+    <h3>Cetaphil Oily Skin Cleanser 473Ml</h3>
+    <p class="price">Rs. 6,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200017.png">
+    <h3>Cerave Hydrating Facial Cleanser Normal To Dry Skin 8Oz/237Ml</h3>
+    <p class="price">Rs. 6,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200028.png">
+    <h3>Garnier Skin Active Vitamin C Micellar Makeup Cleansing Water 125 Ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200033.png">
+    <h3>Saeed Ghani - Goat Milk Face Cleanser 180Gm</h3>
+    <p class="price">Rs. 4,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200043.png">
+    <h3>Dr-Rashel Hyaluronic Acid Essence Cleansing Mousse 125 Ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200057.png">
+    <h3>Beauty Of Joseon Green Plum Refreshing Cleanser 100Ml</h3>
+    <p class="price">Rs. 5,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200105.png">
+    <h3>Estelin Micellar Cleansing Water With Cherry Blossom - 300Ml</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200114.png">
+    <h3>Beauty of Joseon Ginseng Cleansing Oil 210Ml</h3>
+    <p class="price">Rs. 6,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200121.png">
+    <h3>Estelin 3In1 Cleansing Balm - 100G</h3>
+    <p class="price">Rs. 3,985</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200134.png">
+    <h3>K-Secret - Seoul 1988 Cleansing Oil : Pine Cica 1% + Probiotics 200ml</h3>
+    <p class="price">Rs. 5,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200141.png">
+    <h3>Dr.Rashel Deep Cleansing Coconut Oil 135Ml - duplicate</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200146.png">
+    <h3>Estelin Micellar Cleansing Water With Hyaluronic Acid - 300ml</h3>
+    <p class="price">Rs. 8,80</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200200.png">
+    <h3>HaruHaru - Black Rice Moisture Deep Cleansing Oil - 150Ml</h3>
+    <p class="price">Rs. 5,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200204.png">
+    <h3>Anua Heartleaf Pore Control Cleansing Oil Mild/200ml</h3>
+    <p class="price">Rs. 5,690</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200209.png">
+    <h3>Anua - Heartleaf Pore Control Cleansing Oil - 200ml</h3>
+    <p class="price">Rs. 5,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200215.png">
+    <h3>Neutrogena Soothing Clear Mousse Cleanser 150Ml</h3>
+    <p class="price">Rs. 2,019</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200221.png">
+    <h3>Oneskin Hydra Cleanser Hydrating Foaming Cleanser 150ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 200246.png">
+    <h3>Celimax - The Real Noni Acne Bubble Cleanser 155ml</h3>
+    <p class="price">Rs. 4,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201718.png">
+    <h3>Anua - Heartleaf LHA Moisture Peeling Gel - 120Ml</h3>
+    <p class="price">Rs. 5,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 154024.png">
+<h4>Jenpharm Mandelac Face Wash 100Ml</h4>
+<p class="price">Rs. 1450</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+
+<!-- Product 2 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 154101.png">
+<h4>Skin1004 - Madagascar Centella Toning Toner - 30ml</h4>
+<p class="price">Rs. 2200</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-14 183900.png">
+<h4>Age Resisting Cream</h4>
+<p class="price">Rs. 1050</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153905.png">
+<h4>Glow & Lovely - Hydraglow - 60g</h4>
+<p class="price">Rs. 850</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153846.png">
+<h4>Facial Beauty - Mask Brush 1 s</h4>
+<p class="price">Rs. 500</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153827.png">
+<h4>L'Oreal Paris Revitalift Hyaluronic Acid Hydrating Gel Facewash 100ml</h4>
+<p class="price">Rs. 1019</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153759 - Copy.png">
+<h4>Bioaqua Peach Extract Fruit Acid Exfoliating Face Gel Cream 140g</h4>
+<p class="price">Rs. 1280</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153748.png">
+<h4>Jenpharm Niaronic Acne Control Serum Vitamin B3 30Ml</h4>
+<p class="price">Rs. 2500</p>
+    <a href="#" class="btn">Buy Now</a>
+</div>
+
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153726 - Copy.png">
+<h4>Bioaqua - Rice Raw Pulp Eye Cream 20G</h4>
+<p class="price">Rs. 550</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 153713.png">
+<h4>Vince - Hand & Foot Scrub - 120Ml</h4>
+<p class="price">Rs. 2850</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+<!-- Product 3 -->
+<div class="card">
+<img src="asset/Screenshot 2026-02-11 154857.png">
+<h4>Lux Body Wash Fresh Aloe - 520Ml</h4>
+<p class="price">Rs. 4500</p>
+    <a href="#" class="btn">Buy Now</a>
+
+</div>
+</div>
+
+</div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 201731.png">
+    <h3>FW Organics - Whipped Shea Butter Moisturizer</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200305.png">
+    <h3>Johnsons Baby Jelly Lightly Fragranced</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 153738.png">
+    <h3>Jenpharm Dermive Oil Free Moisturizer Lotion 100Ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194830.png">
+    <h3>Vince - Retinol Night Serum - 30Ml</h3>
+    <p class="price">Rs. 2,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194835.png">
+    <h3>Vince - Vitamin C Serum - 30Ml</h3>
+    <p class="price">Rs. 1,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194849.png">
+    <h3>Vince - Niacinamide Zinc Serum - 30Ml</h3>
+    <p class="price">Rs. 1,690</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 194901.png">
+    <h3>Klean Beauty Hyaluronic Acid Serum 20Ml</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 154101.png">
+    <h3>Skin1004 - Madagascar Centella Asiatica Ampoule Facial Serum - 55ml</h3>
+    <p class="price">Rs. 4,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 194912.png">
+    <h3>Cosrx The Niacinamide 15 Serum/20ml</h3>
+    <p class="price">Rs. 5,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 153748.png">
+    <h3>Jenpharm Niaronic Acne Control Serum Vitamin B3 30Ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192551.png">
+    <h3>Cetaphil Gentle Foaming Face Wash Redness-Prone Skin 8Oz/237Ml</h3>
+    <p class="price">Rs. 4,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192603.png">
+    <h3>Garnier Skin Active Neem Purifying Face Wash 100Ml</h3>
+    <p class="price">Rs. 6,59</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192609.png">
+    <h3>Saeed Ghani - Ubtan Face Wash 60ml</h3>
+    <p class="price">Rs. 3,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192617.png">
+    <h3>Garnier Skin Active 3-In-1 Charcoal Blackhead Face Wash Mask Scrub 100Ml</h3>
+    <p class="price">Rs. 8,89</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192622.png">
+    <h3>Glow & Handsome - Men Facewash - 50g</h3>
+    <p class="price">Rs. 2,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192640.png">
+    <h3>Saniderm Purifying Face Wash With Iris Root Extracts 90 ml</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192649.png">
+    <h3>Estelin Niacinamide Fade Spot Face Wash 100G</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192901.png">
+    <h3></h3>
+    <p class="price">Rs. 6,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192832.png">
+    <h3>Hemani Intensive Care Therapy Aloe Vera 3 in 1</h3>
+    <p class="price">Rs. 9,39</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192708.png">
+    <h3>Savannah - Face Wash - 100Ml</h3>
+    <p class="price">Rs. 3,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192718.png">
+    <h3>Vince - Lightnix Whitening Face Wash - 120Ml</h3>
+    <p class="price">Rs. 8,40</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192730.png">
+    <h3>Bio Aqua Rice Raw Pulp Clean Mousse 120Ml</h3>
+    <p class="price">Rs. 6,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192822.png">
+    <h3>B&B Derma - Hyaluronic Hydrating Face Wash Teens</h3>
+    <p class="price">Rs. 7,69</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192742.png">
+    <h3>Chirs's Face Wash 150ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192813.png">
+    <h3>Clinch Beauty Gel Face Wash With Peppermint Jojoba & Vitamin E</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 192910.png">
+    <h3>Dr Rashel - Turmeric Brightening Face Wash 120g</h3>
+    <p class="price">Rs. 1,119</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 154024.png">
+    <h3>Jenpharm Mandelac Face Wash 100Ml</h3>
+    <p class="price">Rs. 1,019</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205619.png">
+    <h3>Bourjois Rouge Velvet Ink Lipstick</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205552.png">
+    <h3>Rimmel Lasting Provo 115 Best Undressed</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+<div class="card">
+    <img src="asset/Screenshot 2026-02-17 230811.png">
+    <h3>Calvin Klein Be Edt 100Ml</h3>
+    <p class="price">Rs. 11,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230819.png">
+    <h3>Ajmal Shiro Eau De Parfum 90 Ml</h3>
+    <p class="price">Rs. 8,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230827.png">
+    <h3>J.Exclusive Intense For Men 100Ml</h3>
+    <p class="price">Rs. 4,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230833.png">
+    <h3>J. Janan Platinum Men's Perfume - 100Ml</h3>
+    <p class="price">Rs. 6,555</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+    <div class="card-content">
+      <h3>Guess Seductive Noir Edt Perfume For Women 75Ml</h3>
+      <div class="price">Rs. 15,999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de">
+    <div class="card-content">
+      <h3>Roberto Cavalli Ladies Florence EDP 2.5 oz Fragrances</h3>
+      <div class="price">Rs. 34,199</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539">
+    <div class="card-content">
+    <h3>Roberto Cavalli Ladies Sweet Ferocious EDP Spray 2.5 oz Fragrances</h3>  
+      <div class="price">Rs. 36,500</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 175219.png">
+    <div class="card-content">
+      <h3>J. Liliane Pour Femme 30Ml</h3>
+      <div class="price">Rs. 19,999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 132814.png">
+    <div class="card-content">
+      <h3>J. Blossom Pour Femme 50Ml</h3>
+      <div class="price">Rs. 35,250</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 132804.png">
+    <div class="card-content">
+      <h3>Antonio Banderas The Icon For Women Set EDP 100Ml+Deo Spray 150Ml</h3>
+      <div class="price">Rs. 17,999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-14 175631.png">
+    <div class="card-content">
+      <h3>J. Janan Gold For Men 100Ml</h3>
+      <div class="price">Rs. 8,999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+   <div class="card">
+    <img src="asset/Screenshot 2026-02-14 175204.png">
+    <div class="card-content">
+      <h3>J. Pour Femme Eau De Parfum 30Ml</h3>
+      
+      <div class="price">Rs. 7,999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+</div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230840.png">
+    <h3>J. Zarar For Men Bleu Eau De Perfum 100Ml</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230848.png">
+    <h3>Jean Paul Gaultier Scandal Him Edt 100Ml</h3>
+    <p class="price">Rs. 23,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230901.png">
+    <h3>Benetton Colors Black Men Edt 100Ml</h3>
+    <p class="price">Rs. 4,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230906.png">
+    <h3>Davidoff Champion Men Edt 90Ml</h3>
+    <p class="price">Rs. 11,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230913.png">
+    <h3>Potion Amber Oud Edp 100Ml</h3>
+    <p class="price">Rs. 4,490</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230924.png"
+    <h3>Fabbrica Della Musa Dolcetto Romano For Men EDP 100Ml</h3>
+    <p class="price">Rs. 47,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230946.png">
+    <h3>Jean Paul Gaultier Scandal A. Paris Edp 80 Ml</h3>
+    <p class="price">Rs. 17,985</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 230955.png">
+    <h3>Women Secret Intimate Edp Perfume for Women 100Ml</h3>
+    <p class="price">Rs. 10,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231007.png">
+    <h3>J. Wasim Akram 502 For Her 100Ml</h3>
+    <p class="price">Rs. 6,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231014.png">
+    <h3>Benetton Sisterland Pink Rasberry Edt 80Ml</h3>
+    <p class="price">Rs. 36,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231019.png">
+    <h3>Benetton Colors Pink Women Edt 80Ml</h3>
+    <p class="price">Rs. 36,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231024.png">
+    <h3>Paris Hilton Rose Rush Woman Edp for Women 100Ml</h3>
+    <p class="price">Rs. 8,769</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231054.png">
+    <h3>Jovan Musk Edc 96Ml Women Black</h3>
+    <p class="price">Rs. 24,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231027.png">
+    <h3>Calvin Klein Eternity For Women Intense Edp 100Ml</h3>
+    <p class="price">Rs. 18,339</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231037.png">
+    <h3>Boss The Scent Her Edp 100Ml</h3>
+    <p class="price">Rs. 24,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 231042.png">
+    <h3>Carolina Herrera Ch Good Girl For Her Edp 80ML</h3>
+    <p class="price">Rs. 26,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205533.png">
+    <h3>Gabrini - Matte Lipstick Crayon</h3>
+    <p class="price">Rs. 6,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205626.png">
+    <h3>Bourjois - Rouge Velvet Ink Lipstick - 2 - Belle Inco-Nude</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205644.png">
+    <h3>Conatural - Long Stay Liquid Matte Lipstick</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205705.png">
+    <h3>Open media 1 in modal
+Color Studio - Rock & Load Liquid Lipstick - 103 Muse</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195753.png">
+    <h3>Makeup Revolution - Pout Lip Gloss Stick</h3>
+    <p class="price">Rs. 2,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200018.png">
+    <h3>Medora - Glossy Lipstick</h3>
+    <p class="price">Rs. 7,69</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 132625.png">
+    <h3>Sweetface - Glamorous Lipstick</h3>
+    <p class="price">Rs. 4,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+<div class="card">
+    <img src="asset/Screenshot 2026-02-17 205517.png">
+    <h3>L'Oreal Elvive Hyaluron Shampoo 360Ml</h3>
+    <p class="price">Rs. 9,90</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205534.png">
+    <h3>Tresemme Shampoo Keratin Smooth & Straight - 170Ml</h3>
+    <p class="price">Rs. 2,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205559.png">
+    <h3>Sunsilk thick & Long Shampoo 660ml</h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212854.png">
+    <h3>Dove - All Day Nourish Hair Serum - 100ml</h3>
+    <p class="price">Rs. 1,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212903.png">
+    <h3>Tresemme - Keratin Smooth Serum - 100ml</h3>
+    <p class="price">Rs. 2,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212913.png">
+    <h3>Saeed Ghani - Hair Growth Water 120Ml</h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212923.png">
+    <h3>Saeed Ghani - Tarchup Oil 100G</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212930.png">
+    <h3>Herbion Hair Oil - 120ml</h3>
+    <p class="price">Rs. 5,50</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212939.png">
+    <h3>Conatural - Coconut Oil</h3>
+    <p class="price">Rs. 9,60</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213000.png">
+    <h3>Shiseido - Fino Premium Touch Hair Oil - 70ml</h3>
+    <p class="price">Rs. 4,789</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 212955.png">
+    <h3>Bio Aqua Rice Raw Pulp Hair Essential Oil 70Ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213006.png">
+    <h3>Mielle - Rosemary Mint Scalp & Edge Cleansing Hair Oil 118Ml</h3>
+    <p class="price">Rs. 5,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213011.png"
+    <h3>IKT - Hair Natural Care Repair Essential Oil - 50ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213020.png">
+    <h3>Posch - Insane Growth Hair Oil</h3>
+    <p class="price">Rs. 1,980</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213035.png">
+    <h3>Neophar - Trichogain Spray For Hair Growth</h3>
+    <p class="price">Rs. 2,489</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213027.png">
+    <h3>Posch - Hair Repair Oil</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213047.png">
+    <h3>Maui Moisture Weightless Oil Mist Coconut Milk 125Ml</h3>
+    <p class="price">Rs. 2,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213042.png">
+    <h3>Jenpharm - Anagrow Rosemary Hair Oil</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213058.png">
+    <h3>Chirs's Argan Essential Oil Serum 100ml
+</h3>
+    <p class="price">Rs. 8,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213053.png">
+    <h3>Chirs's Onion Hair Serum</h3>
+    <p class="price">Rs. 8,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213104.png">
+    <h3>Revlon Professional - RE/START Repair Anti-Split Ends Sealing Drops 50ml</h3>
+    <p class="price">Rs. 5,399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213109.png">
+    <h3>Cosrx - Peptide 132 Ultra Perfect Hair Bonding Oil Serum - 28Ml</h3>
+    <p class="price">Rs. 4,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 213116.png">
+    <h3>Nirvana Botanics - Hair Growth Oil</h3>
+    <p class="price">Rs. 1,550</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+<div class="card">
+    <img src="asset/Screenshot 2026-02-17 210729.png">
+    <h3>L'Oreal Paris Dream Long Straight 72H Conditioner 175Ml</h3>
+    <p class="price">Rs. 4,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210736.png">
+    <h3>Tresemme Conditioner Keratin Smooth & Straight - 170Ml</h3>
+    <p class="price">Rs. 2,280</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210745.png">
+    <h3>Dove - Hairfall Rescue Conditioner - 180ml</h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210757.png">
+    <h3>Mielle - Organics Rosemary Mint Strengthening Leave-In Conditioner - 355ml</h3>
+    <p class="price">Rs. 4,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210806.png">
+    <h3>Truly Komal - Zero Fade Pro Conditioner</h3>
+    <p class="price">Rs. 2,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210822.png">
+    <h3>Herbal Essences Conditioner Strawberry & Mint 275Ml</h3>
+    <p class="price">Rs. 1,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210832.png">
+    <h3>Meclay London - Hair Fall Defense Conditioner - 180ml</h3>
+    <p class="price">Rs. 1,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210840.png">
+    <h3>Nabila Haircare - Repair Conditioner - 150ml</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210847.png">
+    <h3>Hair Pantry - Repair Restoring Conditioner 250Ml</h3>
+    <p class="price">Rs. 1,712</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210903.png"
+    <h3>Sunsilk Conditioner Black Shine - 180Ml</h3>
+    <p class="price">Rs. 5,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210922.png">
+    <h3>Nishman - Pro-Hair Conditioner Keratin Complex - 400Ml</h3>
+    <p class="price">Rs. 6,980</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210912.png">
+    <h3>Revlon Professional - EQUAVE Instant Detangling Conditioner Anti-Breakage 200ml</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210955.png">
+    <h3>Tresemme Usa Conditioner Keratin Smooth 828Ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210928.png">
+    <h3>Dexe - Argan Oil Morocco Conditioner Moisture Vitality 400Ml</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210944.png">
+    <h3>Revlon Professional - Orofluido Radiance Argan Conditioner 240Ml</h3>
+    <p class="price">Rs. 5,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-11 210337.png">
+    <div class="card-content">
+      <div class="product-name">Keratin Repair Revlon</div>
+      <div class="price">Rs. 1,450</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 171947.png">
+    <div class="card-content">
+      <div class="product-name">Hair Growth onion Oil</div>
+      <div class="price">Rs. 999</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195727.png">
+    <div class="card-content">
+      <div class="product-name">Anti Hair Fall Conditioner</div>
+      <div class="price">Rs. 1,199</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 172218.png">
+    <div class="card-content">
+      <div class="product-name">Silky Smooth Hair Serum</div>
+      <div class="price">Rs. 1,350</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 172049.png">
+    <div class="card-content">
+      <div class="product-name">Deep Repair Hair Mask</div>
+      <div class="price">Rs. 1,799</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 172146.png">
+    <div class="card-content">
+      <div class="product-name">Professional Hair Spray</div>
+      <div class="price">Rs. 1,050</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195800.png">
+    <div class="card-content">
+      <div class="product-name">Hair Straightener Brush</div>
+      <div class="price">Rs. 3,499</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 172102.png">
+    <div class="card-content">
+      <div class="product-name">Tressfix Oil Hair Treatment</div>
+      <div class="price">Rs. 1,899</div>
+    <a href="#" class="btn">Buy Now</a>
+
+    </div>
+  </div>
+
+</div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210941.png">
+    <h3>Revlon Professional - BeFabulous Curly Hair C.R.E.A.M. Curl Defining Conditioner</h3>
+    <p class="price">Rs. 7,069</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 211015.png">
+    <h3>K beautyOpen media 1 in modal
+Shiseido Fino Premium Touch Conditioner - 550ml</h3>
+    <p class="price">Rs. 5,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 210958.png">
+    <h3>AccuFix - Strength & Shine Hair Conditioner</h3>
+    <p class="price">Rs. 2,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 211004.png">
+    <h3>Tresemme Usa Conditioner Flawless Curls 28Oz/828Ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 211009.png">
+    <h3>Truly Komal Intensive Repair & Shine Hair Conditioner</h3>
+    <p class="price">Rs. 2,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205542.png">
+    <h3>Sunsilk - Rosemary And Argan Oil Shampoo - 380ml</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205605.png">
+    <h3>Dove - Hairfall Rescue Shampoo - 700ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205623.png">
+    <h3>Lifebuoy Shampoo Herbal Strong 175Ml</h3>
+    <p class="price">Rs. 3,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205633.png">
+    <h3>L'Oreal Paris Elvive 6 Oil Nourish Shampoo 360 Ml - For Dull & Dry Hair</h3>
+    <p class="price">Rs. 8,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205640.png">
+    <h3>Saeed Ghani - Argan Oil Shampoo 200Ml</h3>
+    <p class="price">Rs. 5,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205650.png">
+    <h3>L'Oreal Paris Dream Long Straight 72H Shampoo 175Ml</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205706.png">
+    <h3>Shiseido - Fino Premium Touch Hair Shampoo - 550Ml</h3>
+    <p class="price">Rs. 5,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205733.png">
+    <h3>Dove - Hairfall Rescue Shampoo - 360ml</h3>
+    <p class="price">Rs. 8,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205739.png">
+    <h3>Vince - Biotin & Keratin Shampoo - 230Ml</h3>
+    <p class="price">Rs. 1,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205745.png">
+    <h3>Saeed Ghani - Mughziat Shampoo 200 Ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205800.png">
+    <h3>Herbal Essences Shampoo Daily Detox Shine 400Ml</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205818.png">
+    <h3>Hair Pantry - Clear Anti Dandruff Shampoo - 250Ml</h3>
+    <p class="price">Rs. 1,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205824.png">
+    <h3>Clear Shampoo Complete Clean - 380Ml</h3>
+    <p class="price">Rs. 7,69</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205831.png">
+    <h3>Herbal Essences Shampoo White Grapefruit & Mint 400ML</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205841.png">
+    <h3>Saeed Ghani - Anti Hairfall Onion Shampoo</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160507.png">
+    <h3>Bleuface - Aquaglow Face Cleanser</h3>
+    <p class="price">Rs. 1,129</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160518.png">
+    <h3>Facial Beauty - 5 in 1 Blackhead Remover Machine</h3>
+    <p class="price">Rs. 1,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-11 154857.png">
+    <h3>Lux Body Wash Fresh Aloe - 520Ml</h3>
+    <p class="price">Rs. 9,90</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200138.png">
+    <h3>Lux Body Wash Soft Rose - 520Ml</h3>
+    <p class="price">Rs. 9,90</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154833.png">
+    <h3>Saeed Ghani - Hand Made Rice Soap 1's</h3>
+    <p class="price">Rs. 2,70</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154841.png">
+    <h3>Herbion Cherry & Blossom Body wash 400 ml</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154847.png">
+    <h3>Brut Shower Gel Original 500Ml</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154853.png">
+    <h3>Adidas Shower Gel 3In1 Pure Game Relaxing 13.5Oz/400Ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154912.png">
+    <h3>Dove Baby Wipes Rich Moisture 50S</h3>
+    <p class="price">Rs. 6,89</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154920.png">
+    <h3>Saeed Ghani - Sandal Soap 150gm</h3>
+    <p class="price">Rs. 3,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 154953.png">
+    <h3>Lux - Orchid Bodywash Bottle - 520ml</h3>
+    <p class="price">Rs. 9,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 155040.png"
+    <h3>Saeed Ghani - Neem Soap 75g</h3>
+    <p class="price">Rs. 1,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 155044.png">
+    <h3>Lux Body Wash Soft Rose - 520Ml</h3>
+    <p class="price">Rs. 9,98</p>
+    <button class="btn add-to-cart"
+        data-name="Irish Body Wash Soft Rose"
+        data-price="1239">
+    Buy Now
+</button>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 155051.png">
+    <h3>Herbion Cocoa & Shea Body Wash 400 ml</h3>
+    <p class="price">Rs. 1,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 155102.png">
+    <h3>Dove Baby Wipes Sensitive Moisture 50'S</h3>
+    <p class="price">Rs. 6,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160530.png">
+    <h3>Bleuface - Dual Spatula</h3>
+    <p class="price">Rs. 2,80</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160535.png">
+    <h3>Bleuface - GlowSonic Face Cleanser</h3>
+    <p class="price">Rs. 2,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160541.png">
+    <h3>Bleuface - Dual Face Brush</h3>
+    <p class="price">Rs. 4,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160548.png">
+    <h3>Bleuface - Silicone Back Scrubber</h3>
+    <p class="price">Rs. 5,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160559.png">
+    <h3>Bleuface - Silicone Ice Roller</h3>
+    <p class="price">Rs. 4,89</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160605.png">
+    <h3>Bleuface - Nail Grooming Kit</h3>
+    <p class="price">Rs. 8,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160615.png">
+    <h3>Bleuface - Foot Filer</h3>
+    <p class="price">Rs. 3,41</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160626.png"
+    <h3>Bleuface - Circular Hair Brush</h3>
+    <p class="price">Rs. 4,99</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160636.png">
+    <h3>Bleuface - Silicone Face Brush</h3>
+    <p class="price">Rs. 6,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160654.png">
+    <h3>Bleuface - ClipPro Nail Trimmer</h3>
+    <p class="price">Rs. 1,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-20 160708.png">
+    <h3>Bleuface - Capsule Towels</h3>
+    <p class="price">Rs. 4,59</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195957.png">
+    <h3></h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195834.png">
+    <h3>Nivea Lip Balm Watermelon Shine 4.8G</h3>
+    <p class="price">Rs. 1,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195818.png">
+    <h3>One Step Hot Air Brush (Dryer + Styler)</h3>
+    <p class="price">Rs. 3,399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195932.png">
+    <h3>Philips - Corded Epilator Series 4000 BRE257/00</h3>
+    <p class="price">Rs. 24,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200123.png">
+    <h3>Real Techniques Everyday Eye Essentials Makeup Brush Kit 8's</h3>
+    <p class="price">Rs. 3,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200256.png">
+    <h3>Philips - Air Styler 3000 Series BHA305/00</h3>
+    <p class="price">Rs. 15,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195800.png">
+    <h3>Philips - Bodygroom Series 3000 Showerproof groin and body trimmer BG3027/03</h3>
+    <p class="price">Rs. 12,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205853.png">
+    <h3>Hair Pantry - Biogain Shampoo For Hairfall 250Ml</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-17 205919.png">
+    <h3>Mielle - Rosemary Mint Strengthening Shampoo</h3>
+    <p class="price">Rs. 4,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 211125.png">
+    <h3>Essence - Up Glitter Switch Liquid Lipstick</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="cart.html" class="btn">Buy Now</a>
+   
+  </div>
+
+</section>
+<!-- PROFESSIONAL FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-col">
+      <h2 class="footer-logo">Luxe Beauty</h2>
+      <p>Your trusted beauty store for skincare, makeup & fragrance.
+      Discover luxury beauty products at affordable prices.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="makeup.html">Makeup</a></li>
+        <li><a href="skincare.html">Skin Care</a></li>
+        <li><a href="hair.html">Hair Care</a></li>
+        <li><a href="fragrance.html">Fragrance</a></li>
+      </ul>
+    </div>
+
+    <!-- CUSTOMER SUPPORT -->
+    <div class="footer-col">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="support.html">Help Center</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+        <li><a href="return.html">Returns & Refunds</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="admin.html">Admin</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+
+      </ul>
+
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-col">
+      <h3>Subscribe</h3>
+      <p>Get updates on new products & offers</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+
+      <div class="social-icons">
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    <p>© 2026 Luxe Beauty. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  color:white;
+  padding:50px 40px 20px;
+  margin-top:40px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+
+.footer-logo{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+}
+
+.footer-col ul li a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  padding-left:5px;
+  opacity:0.9;
+}
+
+.newsletter{
+  display:flex;
+  margin-top:10px;
+}
+
+.newsletter input{
+  padding:10px;
+  border:none;
+  outline:none;
+  border-radius:6px 0 0 6px;
+  width:100%;
+}
+
+.newsletter button{
+  background:#fff;
+  color:#ff4fa3;
+  border:none;
+  padding:10px 15px;
+  border-radius:0 6px 6px 0;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.social-icons{
+  margin-top:15px;
+  font-size:20px;
+  display:flex;
+  gap:15px;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.3);
+  margin-top:30px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .footer{
+    text-align:center;
+  }
+  .newsletter{
+    flex-direction:column;
+  }
+  .newsletter input{
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .newsletter button{
+    border-radius:6px;
+  }
+}
+</style>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+const cartContent = document.querySelector(".cart-content");
+const cartTotal = document.querySelector(".cart-total strong");
+
+let cart = JSON.parse(localStorage.getItem("luxeCart")) || [];
+let total = 0;
+
+// OPEN CART
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// CLOSE CART
+function closeCartFunc(){
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+closeCart.addEventListener("click", closeCartFunc);
+overlay.addEventListener("click", closeCartFunc);
+
+// SAVE CART
+function saveCart(){
+  localStorage.setItem("luxeCart", JSON.stringify(cart));
+}
+
+// UPDATE TOTAL
+function updateTotal(){
+  total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+  cartTotal.innerText = "Rs. " + total;
+}
+
+// RENDER CART
+function renderCart(){
+  cartContent.innerHTML = "";
+
+  if(cart.length === 0){
+    cartContent.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+    cartTotal.innerText = "Rs. 0";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.gap = "10px";
+    div.style.marginBottom = "15px";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <img src="${item.image}" width="60" height="60" style="border-radius:8px;">
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:bold">${item.name}</div>
+        <div style="color:#ff4fa3;font-weight:bold">Rs. ${item.price}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+          <button class="minus">-</button>
+          <span>${item.qty}</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    `;
+
+    // PLUS
+    div.querySelector(".plus").onclick = () => {
+      cart[index].qty++;
+      saveCart();
+      renderCart();
+    };
+
+    // MINUS
+    div.querySelector(".minus").onclick = () => {
+      cart[index].qty--;
+      if(cart[index].qty <= 0){
+        cart.splice(index,1);
+      }
+      saveCart();
+      renderCart();
+    };
+
+    cartContent.appendChild(div);
+  });
+
+  updateTotal();
+}
+
+// ADD TO CART
+document.querySelectorAll(".btn").forEach(btn => {
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    const card = this.closest(".card");
+    const name = card.querySelector("h3").innerText;
+    const priceText = card.querySelector(".price").innerText;
+    const price = parseInt(priceText.replace(/[^0-9]/g, ""));
+    const image = card.querySelector("img").src;
+
+    const existing = cart.find(item => item.name === name);
+
+    if(existing){
+      existing.qty++;
+    }else{
+      cart.push({
+        name: name,
+        price: price,
+        image: image,
+        qty: 1
+      });
+    }
+
+    saveCart();
+    renderCart();
+
+    cartSidebar.classList.add("active");
+    overlay.classList.add("active");
+  });
+});
+
+// LOAD CART ON PAGE OPEN
+renderCart();
+
+});
+</script>
+</body>
+</html>

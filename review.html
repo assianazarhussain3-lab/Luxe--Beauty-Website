@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews - Luxe Beauty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* BODY */
+body{
+    background:#f4e7ee;
+}
+
+/* ================= TOP HEADER ================= */
+.top-header{
+    background:#ffffff;
+    padding:15px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo a{
+    font-size:26px;
+    font-weight:bold;
+    color:#ff4f9a;
+    text-decoration:none;
+}
+
+.search-box{
+    width:350px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px 18px;
+    border-radius:30px;
+    border:none;
+    background:#f1f1f1;
+    outline:none;
+}
+
+.header-icons{
+    display:flex;
+    gap:20px;
+    font-size:20px;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    background:linear-gradient(90deg,#ff4f9a,#d63384);
+    padding:0 40px;
+}
+
+.nav-menu{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+}
+
+.nav-menu li{
+    position:relative;
+}
+
+.nav-menu a{
+    display:block;
+    padding:16px 0;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.5px;
+}
+
+.nav-menu a:hover{
+    color:#ffe3f1;
+}
+
+/* DROPDOWN */
+.dropdown{
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:200px;
+    border-radius:8px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    display:none;
+    z-index:1000;
+}
+
+.dropdown a{
+    color:#333;
+    padding:12px 15px;
+    display:block;
+    font-weight:500;
+}
+
+.dropdown a:hover{
+    background:#ffe6f2;
+    color:#ff4f9a;
+}
+
+.nav-menu li:hover .dropdown{
+    display:block;
+}
+
+/* ================= REVIEW HERO ================= */
+.review-hero{
+    text-align:center;
+    padding:70px 20px 30px;
+}
+
+.review-hero h1{
+    font-size:42px;
+    color:#ff4f9a;
+    margin-bottom:10px;
+}
+
+.review-hero p{
+    color:#666;
+    font-size:18px;
+}
+
+/* ================= REVIEW CARDS ================= */
+.review-container{
+    max-width:1100px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding:0 20px;
+}
+
+.review-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+    text-align:center;
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+}
+
+.stars{
+    color:#ffb400;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.review-text{
+    font-size:15px;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.user{
+    font-weight:600;
+    color:#ff4f9a;
+}
+
+/* ================= ADD REVIEW FORM ================= */
+.form-section{
+    max-width:700px;
+    margin:70px auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-section h2{
+    text-align:center;
+    color:#ff4f9a;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    outline:none;
+}
+
+.form-group textarea{
+    height:120px;
+    resize:none;
+}
+
+.submit-btn{
+    width:100%;
+    background:linear-gradient(90deg,#ff4f9a,#d63384);
+    border:none;
+    padding:14px;
+    border-radius:30px;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    opacity:0.9;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    background:linear-gradient(90deg,#ff4f9a,#d63384);
+    color:white;
+    padding:60px 40px 20px;
+    margin-top:80px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:40px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer h3{
+    margin-bottom:15px;
+}
+
+.footer p,
+.footer a{
+    font-size:14px;
+    color:#ffe3f1;
+    text-decoration:none;
+    line-height:1.8;
+}
+
+.footer a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid rgba(255,255,255,0.3);
+    padding-top:15px;
+    font-size:14px;
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<header class="top-header">
+    <div class="logo">
+        <a href="index.html">Luxe Beauty</a>
+    </div>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search for Sheet Mask">
+    </div>
+<!-- ICONS RIGHT -->
+  <div class="header-icons">
+    <a href="Register Page - Luxe Beauty.html" class="icon">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+   
+</header>
+
+<!-- NAVBAR WITH DROPDOWN -->
+<nav class="navbar">
+    <ul class="nav-menu">
+        <li>
+            <a href="skincare.html">SKIN CARE ▾</a>
+            <div class="dropdown">
+                <a href="facewash.html">Face Wash</a>
+                <a href="cleanser.html">Cleanser</a>
+                <a href="serum.html">Serum</a>
+                <a href="moisturizer.html">Moisturizer</a>
+            </div>
+        </li>
+
+        <li>
+            <a href="makeup.html">MAKEUP ▾</a>
+            <div class="dropdown">
+                <a href="foundation.html">Foundation</a>
+                <a href="lipstick.html">Lipstick</a>
+                <a href="concealer.html">Concealer</a>
+                <a href="blush.html">Blush</a>
+            </div>
+        </li>
+
+        <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampo.html">Shampoo</a>
+        <a href="hair-oil.html">Hair Oil</a>
+        <a href="conditonar.html">Conditioner</a>
+      </div>
+    </li>
+ <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+        <li>
+
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+        <li><a href="review.html">REVIEWS</a></li>
+        <li><a href="track.html">TRACK YOUR ORDER</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="review-hero">
+    <h1>Customer Reviews</h1>
+    <p>Real feedback from our beautiful customers 💕</p>
+</section>
+
+<!-- REVIEW CARDS -->
+<div class="review-container">
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">
+            Amazing quality products! My skin is glowing after using Luxe Beauty skincare.
+        </div>
+        <div class="user">– Ayesha Khan</div>
+    </div>
+
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">
+            Fast delivery and original products. Totally recommended!
+        </div>
+        <div class="user">– Sana Ali</div>
+    </div>
+
+    <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <div class="review-text">
+            Makeup collection is stunning and affordable. Loved the packaging!
+        </div>
+        <div class="user">– Hira Malik</div>
+    </div>
+</div>
+
+<!-- ADD REVIEW FORM (CENTER & PROFESSIONAL LENGTH) -->
+<section class="form-section">
+    <h2>Write a Review</h2>
+
+    <div class="form-group">
+        <input type="text" placeholder="Your Name">
+    </div>
+
+    <div class="form-group">
+        <input type="email" placeholder="Your Email">
+    </div>
+
+    <div class="form-group">
+        <textarea placeholder="Share your experience..."></textarea>
+    </div>
+
+    <button class="submit-btn">Submit Review</button>
+</section>
+
+<!-- FOOTER (SAME PINK THEME) -->
+<footer class="footer">
+    <div class="footer-container">
+        <div>
+            <h3>Luxe Beauty</h3>
+            <p>Your trusted beauty store for skincare, makeup & fragrance. Discover luxury beauty products at affordable prices.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a><br>
+            <a href="makeup.html">Makeup</a><br>
+            <a href="skincare.html">Skin Care</a><br>
+            <a href="haircare.html">Hair Care</a>
+        </div>
+
+        <div>
+            <h3>Customer Support</h3>
+            <a href="support.html">Help Center</a><br>
+            <a href="track.html">Track Your Order</a><br>
+            <a href="#">Returns & Refunds</a><br>
+            <a href="#">Privacy Policy</a>
+             <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html">Admin</a></li>
+        </div>
+
+        <div>
+            <h3>Subscribe</h3>
+            <p>Get updates on new products & offers</p>
+            <input type="email" placeholder="Enter your email" style="padding:10px;border-radius:8px;border:none;width:100%;margin-top:10px;">
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Luxe Beauty. All Rights Reserved.
+    </div>
+</footer>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+</body>
+</html>

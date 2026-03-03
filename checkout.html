@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Luxe Beauty</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{
+  --primary:#ff2e93;
+  --soft:#fff0f6;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#ffffff;
+}
+
+/* HEADER */
+.checkout-header{
+  padding:20px 40px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:700;
+  color:#ff2e93;
+  text-decoration:none;
+}
+
+/* FULL LAYOUT (FIX RIGHT SIDE ISSUE) */
+.checkout-wrapper{
+  display:flex;
+  width:100%;
+  min-height:100vh;
+  gap:40px;
+  padding:40px;
+}
+
+/* LEFT FORM */
+.checkout-left{
+  flex:2;
+}
+
+/* RIGHT SUMMARY (ALWAYS RIGHT SIDE) */
+.checkout-right{
+  flex:1;
+  background:#fff0f6;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #ffd1e6;
+  height:fit-content;
+  position:sticky;
+  top:20px;
+}
+
+/* INPUTS */
+.section-title{
+  font-size:20px;
+  font-weight:600;
+  margin:25px 0 10px;
+}
+
+.input{
+  width:100%;
+  padding:14px;
+  border:1px solid #e5e5e5;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+.row{
+  display:flex;
+  gap:12px;
+}
+
+/* SHIPPING */
+.shipping-box{
+  border:2px solid #ddd;
+  padding:15px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* PAYMENT */
+.payment-option{
+  border:2px solid #ddd;
+  padding:15px;
+  border-radius:10px;
+  margin-top:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.payment-option.active{
+  border-color:#ff2e93;
+  background:#fff0f7;
+}
+
+/* CART ITEMS */
+.checkout-item{
+  display:flex;
+  gap:12px;
+  margin-bottom:15px;
+  padding-bottom:10px;
+  border-bottom:1px solid #f3c6dc;
+}
+
+.checkout-item img{
+  width:60px;
+  height:60px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+/* DISCOUNT */
+.discount-box{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
+
+.discount-box input{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ffc1de;
+}
+
+.discount-box button{
+  background:#ff2e93;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* PRICE */
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:15px;
+}
+
+.total{
+  font-size:20px;
+  font-weight:bold;
+  color:#ff2e93;
+}
+
+/* PAY BUTTON */
+.pay-btn{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  background:linear-gradient(90deg,#ff4fa3,#ff8ac5);
+  border:none;
+  color:white;
+  font-size:16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="checkout-header">
+  <a href="index.html" class="logo">Luxe Beauty</a>
+</div>
+
+<div class="checkout-wrapper">
+
+  <!-- LEFT SIDE FORM -->
+  <div class="checkout-left">
+
+    <div class="section-title">Contact</div>
+    <input type="email" class="input" placeholder="Email">
+
+    <div class="section-title">Delivery</div>
+    <input type="text" class="input" value="Pakistan">
+
+    <div class="row">
+      <input type="text" class="input" placeholder="First name">
+      <input type="text" class="input" placeholder="Last name">
+    </div>
+
+    <input type="text" class="input" placeholder="Address">
+    <input type="text" class="input" placeholder="Nearest Landmark">
+
+    <div class="row">
+      <input type="text" class="input" placeholder="City">
+      <input type="text" class="input" placeholder="Postal code">
+    </div>
+
+    <input type="text" class="input" placeholder="Phone">
+
+    <div class="section-title">Shipping method</div>
+    <div class="shipping-box">
+      <span>Fast Tracked Shipping</span>
+      <span>Rs. 199</span>
+    </div>
+
+    <div class="section-title">Payment</div>
+    <p style="font-size:13px;color:#777;">All transactions are secure and encrypted.</p>
+
+    <div class="payment-option" onclick="selectPayment(this)">PayFast (Card/Wallet)</div>
+    <div class="payment-option" onclick="selectPayment(this)">BaadMay | Buy Now Pay Later</div>
+    <div class="payment-option" onclick="selectPayment(this)">Cash on Delivery (COD)</div>
+
+  </div>
+
+  <!-- RIGHT SIDE SUMMARY -->
+  <div class="checkout-right">
+    <h2>Your Cart</h2>
+
+    <div id="checkoutItems"></div>
+
+    <!-- DISCOUNT -->
+    <div class="discount-box">
+      <input type="text" id="discountInput" placeholder="Discount code">
+      <button onclick="applyDiscount()">Apply</button>
+    </div>
+
+    <div class="price-row">
+      <span>Subtotal</span>
+      <span id="subtotal">Rs. 0</span>
+    </div>
+
+    <div class="price-row">
+      <span>Shipping</span>
+      <span id="shipping">Rs. 199</span>
+    </div>
+
+    <div class="price-row total">
+      <span>Total</span>
+      <span id="total">Rs. 0</span>
+    </div>
+    <a href="cart.html" class="btn-primary">Pay Now</a>
+
+  </div>
+
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("luxeCart")) || [];
+let shippingCost = 199;
+let discount = 0;
+
+const checkoutItems = document.getElementById("checkoutItems");
+const subtotalEl = document.getElementById("subtotal");
+const shippingEl = document.getElementById("shipping");
+const totalEl = document.getElementById("total");
+
+function renderCheckout(){
+  checkoutItems.innerHTML = "";
+  let subtotal = 0;
+
+  if(cart.length === 0){
+    checkoutItems.innerHTML = "<p>Your cart is empty</p>";
+    subtotalEl.innerText = "Rs. 0";
+    shippingEl.innerText = "Rs. 0";
+    totalEl.innerText = "Rs. 0";
+    return;
+  }
+
+  cart.forEach(item=>{
+
+    // 🔥 FIX — SUPPORT BOTH quantity & qty
+    let qty = item.quantity || item.qty || 1;
+
+    // 🔥 FIX — FORCE NUMBER PRICE
+    let price = parseInt(item.price);
+
+    subtotal += price * qty;
+
+    checkoutItems.innerHTML += `
+      <div class="checkout-item">
+        <img src="${item.image}">
+        <div>
+          <h4>${item.name}</h4>
+          <p>Rs. ${price}</p>
+          <small>Qty: ${qty}</small>
+        </div>
+      </div>
+    `;
+  });
+
+  let finalTotal = subtotal + shippingCost - discount;
+
+  subtotalEl.innerText = "Rs. " + subtotal;
+  shippingEl.innerText = "Rs. " + shippingCost;
+  totalEl.innerText = "Rs. " + finalTotal;
+}
+
+function applyDiscount(){
+  const code = document.getElementById("discountInput").value.trim();
+
+  if(code === "LUXE10"){
+    discount = 100;
+    alert("Rs.100 Discount Applied 💖");
+  }else{
+    discount = 0;
+    alert("Invalid Code");
+  }
+
+  renderCheckout();
+}
+
+function selectPayment(el){
+  document.querySelectorAll(".payment-option").forEach(opt=>{
+    opt.classList.remove("active");
+  });
+  el.classList.add("active");
+}
+
+renderCheckout();
+</script>
+
+</body>
+</html>

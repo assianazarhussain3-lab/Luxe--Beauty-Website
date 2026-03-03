@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Summary | Luxe Beauty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{
+  font-family:Inter,sans-serif;
+  padding:40px;
+  background:#fff0f6;
+}
+.order-box{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  max-width:700px;
+  margin:auto;
+}
+.order-item{
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
+  border-bottom:1px solid #eee;
+  padding-bottom:10px;
+}
+.order-item img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+.total{
+  font-weight:bold;
+  font-size:20px;
+  color:#ff2e93;
+}
+</style>
+</head>
+<body>
+  <a href="index.html" class="logo">Luxe Beauty</a>
+</div>
+
+<div class="order-box">
+  <h2>🎉 Order Confirmed!</h2>
+  <div id="orderItems"></div>
+
+  <div class="price-row">
+    <span>Subtotal</span>
+    <span id="sub"></span>
+  </div>
+
+  <div class="price-row">
+    <span>Shipping</span>
+    <span id="ship"></span>
+  </div>
+
+  <div class="price-row">
+    <span>Discount</span>
+    <span id="disc"></span>
+  </div>
+
+  <div class="price-row total">
+    <span>Total Paid</span>
+    <span id="tot"></span>
+  </div>
+</div>
+
+<script>
+let order = JSON.parse(localStorage.getItem("orderData"));
+
+const orderItems = document.getElementById("orderItems");
+
+order.items.forEach(item=>{
+  let quantity = item.quantity || item.qty || 1;
+  let price = parseInt(item.price);
+
+  orderItems.innerHTML += `
+    <div class="order-item">
+      <img src="${item.image}">
+      <div>
+        <h4>${item.name}</h4>
+        <p>Rs. ${price}</p>
+        <small>Qty: ${quantity}</small>
+      </div>
+    </div>
+  `;
+});
+
+document.getElementById("sub").innerText = "Rs. " + order.subtotal;
+document.getElementById("ship").innerText = "Rs. " + order.shipping;
+document.getElementById("disc").innerText = "- Rs. " + order.discount;
+document.getElementById("tot").innerText = "Rs. " + order.total;
+
+// Optional: clear cart after order
+localStorage.removeItem("cart");
+</script>
+
+</body>
+</html>

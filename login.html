@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Luxe Beauty</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#ffe6f2,#fff0f6,#ffd6e8);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .login-box{
+      background:#fff;
+      padding:40px 35px;
+      width:100%;
+      max-width:420px;
+      border-radius:25px;
+      box-shadow:0 10px 35px rgba(255,105,180,0.25);
+      text-align:center;
+    }
+
+    .login-box h2{
+      margin-bottom:10px;
+      color:#3a0f2e;
+    }
+
+    .login-box p{
+      font-size:14px;
+      color:#666;
+      margin-bottom:25px;
+    }
+
+    .form-group{
+      text-align:left;
+      margin-bottom:18px;
+    }
+
+    .form-group label{
+      font-size:13px;
+      font-weight:600;
+      color:#444;
+    }
+
+    .form-group input{
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      border-radius:10px;
+      border:1px solid #ffc1dc;
+      outline:none;
+      font-size:14px;
+    }
+
+    .form-group input:focus{
+      border-color:#ff69b4;
+      box-shadow:0 0 5px rgba(255,105,180,0.4);
+    }
+
+    .options{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      margin-bottom:15px;
+      color:#555;
+    }
+
+    .options a{
+      color:#ff69b4;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .options a:hover{
+      text-decoration:underline;
+    }
+
+    .btn-login{
+      width:100%;
+      padding:12px;
+      margin-top:5px;
+      background:#ff69b4;
+      border:none;
+      border-radius:25px;
+      font-weight:600;
+      color:#fff;
+      cursor:pointer;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    .btn-login:hover{
+      background:#e0559f;
+    }
+
+    .register-link{
+      margin-top:20px;
+      font-size:14px;
+    }
+
+    .register-link a{
+      color:#ff69b4;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .register-link a:hover{
+      text-decoration:underline;
+    }
+/* Center logo inside login box */
+.login-box .logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Center the Luxe Beauty link */
+.brand-logo {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ff4d88; /* pink theme */
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Pink span like your theme */
+.brand-logo span {
+  color: #ff80aa;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffe6f2, #ffd6e8);
+}
+.login-box {
+  text-align: center;
+}
+
+.login-box p {
+  text-align: center;
+  margin-top: 5px;
+}
+/* ===== PERFECT CENTER LOGO (HOME PAGE STYLE) ===== */
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff2e93; /* luxe pink */
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.brand-logo span {
+  color: #ff80aa;
+}
+
+/* Subtitle center exactly under logo */
+.login-box p {
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 25px;
+  color: #777;
+}
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <div class="logo">
+  <a href="index.html" class="brand-logo">
+    Luxe <span>Beauty</span>
+  </a>
+</div>
+
+<p>Login to your Luxe Beauty account</p>
+
+    <form>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter password" required>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+
+    </form>
+
+    <div class="register-link">
+      Don’t have an account? <a href="Register Page - Luxe Beauty.html">Register</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

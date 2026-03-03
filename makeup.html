@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation - Luxe Beauty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* TOP HEADER */
+.top-header{
+  background:#e8ddea;
+  padding:15px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff4fa3;
+}
+
+.search-box{
+  width:40%;
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+  padding:12px 20px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  background:#f2f2f2;
+  font-size:14px;
+}
+
+/* ICONS */
+.icons{
+  display:flex;
+  gap:20px;
+  font-size:18px;
+  color:#555;
+}
+
+/* NAVBAR */
+.navbar{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  padding:0 40px;
+}
+
+.nav-menu{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+
+.nav-menu li{
+  position:relative;
+}
+
+.nav-menu a{
+  display:block;
+  padding:18px 5px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+}
+
+.nav-menu a:hover{
+  opacity:0.9;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:absolute;
+  top:60px;
+  left:0;
+  background:#f3e6eb;
+  min-width:180px;
+  border-radius:12px;
+  display:none;
+  overflow:hidden;
+}
+
+.dropdown a{
+  color:#333;
+  padding:12px 15px;
+  display:block;
+  border-bottom:1px solid #e5cbd6;
+  font-weight:500;
+}
+
+.dropdown a:hover{
+  background:#ffd6ea;
+}
+
+.nav-menu li:hover .dropdown{
+  display:block;
+}
+
+/* PAGE HEADER */
+.page-title{
+  background:#f4e2ea;
+  padding:40px;
+  text-align:center;
+}
+
+.page-title h1{
+  color:#ff4fa3;
+  font-size:32px;
+}
+
+/* PRODUCT SECTION */
+.products{
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  background:#f7f2f5;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card h3{
+  margin:10px 0;
+  font-size:16px;
+}
+
+.price{
+  color:#ff4fa3;
+  font-weight:bold;
+}
+
+.btn{
+  margin-top:10px;
+  display:block;
+  background:#ff4fa3;
+  color:white;
+  padding:8px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .top-header{
+    flex-direction:column;
+    gap:10px;
+  }
+  .search-box{
+    width:100%;
+  }
+  .nav-menu{
+    flex-wrap:wrap;
+    gap:15px;
+  }
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to right,#ff1493,#ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+/* ===== SIDEBAR CART PROFESSIONAL (SAFE FOR HEADER) ===== */
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* hidden by default */
+  width: 380px;
+  height: 100vh;
+  background: #ffe6f0; /* pink theme */
+  box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 9999; /* below header if header is 10000 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active State */
+.cart-sidebar.active {
+  right: 0;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Header */
+.cart-header {
+  background: linear-gradient(135deg, #ff4d88, #ff80aa);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cart Content */
+.cart-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ffc2d6;
+  background: #ffd6e6;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e6005c;
+}
+
+/* Cart Icon Button */
+.cart-icon {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.cart-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.btn-primary{
+      background:var(--secondary);
+      color:#000;
+      padding:12px 28px;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:30px;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary:hover{
+      background:#df8cc1;
+    }
+</style>
+</head>
+<body>
+<!-- TOP HEADER -->
+<header class="top-header">
+  
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">Luxe Beauty</a>
+  </div>
+
+  <!-- SEARCH BAR CENTER -->
+  <div class="search-box">
+    <input type="text" placeholder="Search for Sheet Mask">
+    <button>🔍</button>
+  </div>
+
+  <!-- ICONS RIGHT -->
+  <div class="header-icons">
+    <a href="Register Page - Luxe Beauty.html" class="icon">👤</a>
+  <button class="cart-icon" id="cartBtn">🛒</button>
+
+  </div>
+
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <ul class="nav-menu">
+
+    <li>
+      <a href="skincare.html">SKIN CARE ▾</a>
+      <div class="dropdown">
+        <a href="fashwash.html">Face Wash</a>
+        <a href="cleaner.html">Cleanser</a>
+        <a href="serum.html">Serum</a>
+        <a href="mosturizer.html">Moisturizer</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="makeup.html">MAKEUP ▾</a>
+      <div class="dropdown">
+        <a href="foundation.html">Foundation</a>
+        <a href="lipstick.html">Lipstick</a>
+        <a href="cancelar.html">Concealer</a>
+        <a href="blush.html">Blush</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="hair.html">HAIR CARE ▾</a>
+      <div class="dropdown">
+        <a href="shampo.html">Shampoo</a>
+        <a href="hair-oil.html">Hair Oil</a>
+        <a href="conditonar.html">Conditioner</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="fragrance.html">FRAGRANCE ▾</a>
+      <div class="dropdown">
+        <a href="perfume.html">Perfume</a>
+        <a href="bodymist.html">Body Mist</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="personal.html">PERSONAL CARE ▾</a>
+      <div class="dropdown">
+        <a href="bodywash.html">Body Wash</a>
+        <a href="beauty-tool.html">Beauty Tool</a>
+      </div>
+    </li>
+<li class="nav-item">
+      <a href="support.html">Support ▾</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="return.html">Return</a>
+        <a href="track.html">Track</a>
+      </div>
+    </li>
+    <li><a href="review.html">REVIEWS</a></li>
+    <li><a href="track.html">TRACK YOUR ORDER</a></li>
+
+  </ul>
+</nav>
+
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+  <h1>Makeup Collection</h1>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170606.png">
+    <h3>Makeup Revolution Maxi Reloaded Eyeshadow Palette Nudes</h3>
+    <p class="price">Rs. 7,920</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 194822.png">
+    <h3>MUA Blushed Matte Blush Powder - Papaya Whip</h3>
+    <p class="price">Rs. 2,500</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 140343.png">
+    <h3>Maybelline New York Fit Me Mono lipstick, 16 Hr Long Lasting Wear, 40, Proud</h3>
+    <p class="price">Rs. 2,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-11 210958.png">
+    <h3>ELF - High Definition Powder - Soft Luminance</h3>
+    <p class="price">Rs. 3,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162152.png">
+    <h3>Maybelline New York Fit Me Mono Blush, 16 Hr Long Lasting Wear, 40, Proud</h3>
+    <p class="price">Rs. 2,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195915.png">
+    <h3>Maybelline New York Lash Sensational Waterproof Sky High Mascara for Limitless Length</h3>
+    <p class="price">Rs. 3,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162211.png">
+    <h3>Maybelline - Fit Me Mono 20 Blush</h3>
+    <p class="price">Rs. 2,980</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+ <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195858.png">
+    <h3>Maybelline - Fit Me Mono 20 Define Powder</h3>
+    <p class="price">Rs. 4,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200312.png">
+    <h3>Lips glossy</h3>
+    <p class="price">Rs. 3,280</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162603.png">
+    <h3>Facial Beauty - Hudamoji 3 In 1 Blusher & Highlighter 01</h3>
+    <p class="price">Rs. 5,09</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162239.png">
+    <h>Makeup Revolution Blush Bomb Cream Blusher Dolly Rose</h3>
+    <p class="price">Rs. 3,499</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162254.png">
+    <h3>Makeup Revolution X Roxi Cherry BlossomÂ Liquid Blush Duo 2 X 15ml</h3>
+    <p class="price">Rs. 4,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180640.png">
+    <h3>Maybelline New York Fit Me Concealer - 25 Medium</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180654.png">
+    <h3>Maybelline New York Instant Age Rewind Eraser Concealer - 110 Fair</h3>
+    <p class="price">Rs. 3,780</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180702.png">
+    <h>La Girl Pro Conceal Hd Concealer 982 Warm Honey</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180712.png">
+    <h3>L.A Girl Pro Conceal Hd Concealer Dark Cocoa</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180732.png">
+    <h3>NYX Can'T Stop Won'T Stop Concealer (Cswsc07-Natural) 3.50Ml</h3>
+    <p class="price">Rs. 2,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 182912.png">
+    <h3>Glamorous Face - Oil Free Cover Stick</h3>
+    <p class="price">Rs. 399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180810.png">
+    <h3>Bourjois Healthy Mix Clean Concealer - 54 Sun Bronze</h3>
+    <p class="price">Rs. 3,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180821.png">
+    <h3>Open media 1 in modal
+Makeup Revolution Eye Bright Concealer Medium</h3>
+    <p class="price">Rs. 4,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180824.png">
+    <h3>Relove By Revolution Super Concealer Radiant Matte C2 3ml</h3>
+    <p class="price">Rs. 1,812</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180835.png">
+    <h3>Artdeco - Perfect Teint Concealer 5</h3>
+    <p class="price">Rs. 2,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200009.png">
+    <h3></h3>
+    <p class="price">Rs. 5,698</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180925.png">
+    <h3>Zeena Camouflage Concealer Wp 020</h3>
+    <p class="price">Rs. 9,50</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180951.png">
+    <h3>Elf - Hydrating Camo Concealer - 6ml</h3>
+    <p class="price">Rs. 4,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 180958.png">
+    <h3>VI'DA - Cover up Concealer</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181007.png">
+    <h3>ZERO Makeup - Blurring Pen</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181015.png">
+    <h3>BBA - Radiant Concealer</h3>
+    <p class="price">Rs. 3,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 181337.png">
+    <h3>Tarte Shape Tape Concealer In 29N Light Medium 10M (3194)</h3>
+    <p class="price">Rs. 8,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 182305.png">
+    <h3>L'Oreal Paris Infallible Full Wear More Than Concealer - 327 Cashmere</h3>
+    <p class="price">Rs. 8,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162303.png">
+    <h3>Relove By Revolution Colour Play Blushed Duo Queen</h3>
+    <p class="price">Rs. 1,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162318.png">
+    <h3>Makeup Revolution Mousse Blusher Squeeze Me Soft Pink</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162324.png">
+    <h3>elf-camo liquid blush</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162348.png">
+    <h3>swiss-miss rose blush</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162353.png">
+    <h3>Rimmel Lasting Provo 115 Best Undressed blush</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162404.png">
+    <h3>Haya-Beauty Halal beauty multi use stick blush</h3>
+    <p class="price">Rs. 1,986</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162417.png">
+    <h3>shein Sheglam color bloom dayglow liquid blush</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162422.png">
+    <h3>Lemal blush cheak colors -405 38kg</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162517.png">
+    <h3>AQ Cosmetics BLUSH HIM CrÃ¨me Blush</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162522.png">
+    <h3>Makeup Revolution - Jelly Blush Stick Lip and Cheek Stain</h3>
+    <p class="price">Rs. 3,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162525.png">
+    <h3>Makeup Revolution - Superdewy Liquid Blush Burst</h3>
+    <p class="price">Rs. 3,199</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162533.png">
+    <h3>BBA - Radiant Liquid Blush</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 162538.png">
+    <h3>Huda Beauty - Blush Filter Liquid Blush</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170614.png">
+    <h3>Makeup Revolution Reloaded Palette Iconic Fever</h3>
+    <p class="price">Rs. 2,780</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170620.png">
+    <h>Makeup Revolution Brow Sculpt Kit Dark Brown</h3>
+    <p class="price">Rs. 2,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170627.png">
+    <h3>MUA Pro 6 Pan Palettes Smokey Shadows</h3>
+    <p class="price">Rs. 1,825</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170640.png">
+    <h3>Rimmel Magnifeyes Smoke Edition Shade # 34560754003</h3>
+    <p class="price">Rs. 3,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170647.png">
+    <h3>MUA 15 Shade Palette - Empire Butterfly</h3>
+    <p class="price">Rs. 2,099</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170656.png">
+    <h3>Makeup Revolution Reloaded Palette Iconic 3.0</h3>
+    <p class="price">Rs. 2,789</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170700.png">
+    <h3>Open media 1 in modal
+Max factor Real Brow Duo Kit - 02 Medium</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170707.png">
+    <h3>Open media 1 in modal
+Lurella - Sweetheart Eyeshadow Palette</h3>
+    <p class="price">Rs. 4,212</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170711.png">
+    <h3>Makeup Revolution Forever Flawless Chilled With Cannabis Sativa Eyeshadow Palette</h3>
+    <p class="price">Rs. 6,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+<div class="card">
+    <img src="asset/Screenshot 2026-02-14 193110.png">
+    <h3>Matte Liquid Foundation</h3>
+    <p class="price">Rs. 1,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192926.png">
+    <h3>Full Coverage Foundation</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193039.png">
+    <h3>HD Foundation</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193033.png">
+    <h3>Zeen Foundation</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193020.png">
+    <h3>Revolution Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193047.png">
+    <h3>Long lasting Foundation</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193116.png">
+    <h3>Joi Foundation</h3>
+    <p class="price">Rs. 4,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193009.png">
+    <h3>Ivory Foundation</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193126.png">
+    <h3>Trouble juno Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192900.png">
+    <h3>HD Foundation</h3>
+    <p class="price">Rs. 3,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192803.png">
+    <h3>Miss Rose Foundation</h3>
+    <p class="price">Rs. 1,989</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192940.png">
+    <h3>Caty Foundation</h3>
+    <p class="price">Rs. 4,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193134.png">
+    <h3>Kind And Free Foundation</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192935.png">
+    <h3>fit me Foundation</h3>
+    <p class="price">Rs. 1,296</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193055.png">
+    <h3>Define Foundation</h3>
+    <p class="price">Rs. 1,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192949.png">
+    <h3>Essence Foundation</h3>
+    <p class="price">Rs. 5,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 192833.png">
+    <h3>Longwear Foundation</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 193103.png">
+    <h3>Cover foundation Foundation</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170718.png">
+    <h3>Open media 1 in modal
+Makeup Revolution - Pro True Love Eye & Cheek Palette Light-Medium</h3>
+    <p class="price">Rs. 5,698</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170734.png">
+    <h3>Rimmel - London Mini Power Palette 005 Boss Babe</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170749.png">
+    <h3>Sheglam Eyeshadow Palette The Burgundy</h3>
+    <p class="price">Rs. 4,299</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170816.png">
+    <h3>Makeup Revolution - The Eternal Icon Green Palette</h3>
+    <p class="price">Rs. 4,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170847.png">
+    <h3>Trouble Maker - Big Trouble Shadow Palette</h3>
+    <p class="price">Rs. 4,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170851.png">
+    <h3>Trouble Maker - Trouble Shadow Palette</h3>
+    <p class="price">Rs. 2,999</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170901.png">
+    <h3>Miss Rose - New Nude Eyeshadow Palette - 19.7G</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-16 170935.png">
+    <h3>Revolution Pro Regeneration Palette - Revelation</h3>
+    <p class="price">Rs. 4,399</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205727.png">
+    <h3>ST London - Velvet Ultra Matt Lipstick - Hyper Brown</h3>
+    <p class="price">Rs. 1,900</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205636.png">
+    <h3>L'Oreal Paris Infallible Matte Resistance 210 Tropical Vacay</h3>
+    <p class="price">Rs. 2,580</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205538.png">
+    <h3MUA Velvet Matte Liquid Lip - Devotion></h3>
+    <p class="price">Rs. 1,709</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205448.png">
+    <h3>MUA Satin Lipstick - Deja Vu</h3>
+    <p class="price">Rs. 1,115</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+  
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205510.png">
+    <h3>Zeena- Liquid Matte Tattoo Lipstick 040 Cocoa</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205501.png">
+    <h3>Maybelline Super Stay Matte Ink Liquid Lipstick - 135</h3>
+    <p class="price">Rs. 3,699</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205544.png">
+    <h3>Pupa Milano - I'M Matt Pure Colr Lipstick - Magenta Rose</h3>
+    <p class="price">Rs. 4,289</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205557.png">
+    <h3>MUA Metallic Liquid Lip - Luster</h3>
+    <p class="price">Rs. 1,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205619.png">
+    <h3>Bourjois Rouge Velvet Ink Lipstick</h3>
+    <p class="price">Rs. 1,412</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205552.png">
+    <h3>Rimmel Lasting Provo 115 Best Undressed</h3>
+    <p class="price">Rs. 2,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205533.png">
+    <h3>Gabrini - Matte Lipstick Crayon</h3>
+    <p class="price">Rs. 6,98</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205626.png">
+    <h3>Bourjois - Rouge Velvet Ink Lipstick - 2 - Belle Inco-Nude</h3>
+    <p class="price">Rs. 2,239</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205644.png">
+    <h3>Conatural - Long Stay Liquid Matte Lipstick</h3>
+    <p class="price">Rs. 1,599</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-14 205705.png">
+    <h3>Open media 1 in modal
+Color Studio - Rock & Load Liquid Lipstick - 103 Muse</h3>
+    <p class="price">Rs. 1,800</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 195753.png">
+    <h3>Makeup Revolution - Pout Lip Gloss Stick</h3>
+    <p class="price">Rs. 2,799</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 200018.png">
+    <h3>Medora - Glossy Lipstick</h3>
+    <p class="price">Rs. 7,69</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 132625.png">
+    <h3>Sweetface - Glamorous Lipstick</h3>
+    <p class="price">Rs. 4,899</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+  <div class="card">
+    <img src="asset/Screenshot 2026-02-11 211125.png">
+    <h3>Essence - Up Glitter Switch Liquid Lipstick</h3>
+    <p class="price">Rs. 1,819</p>
+    <a href="#" class="btn">Buy Now</a>
+  </div>
+
+</section>
+<!-- PROFESSIONAL FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-col">
+      <h2 class="footer-logo">Luxe Beauty</h2>
+      <p>Your trusted beauty store for skincare, makeup & fragrance.
+      Discover luxury beauty products at affordable prices.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="makeup.html">Makeup</a></li>
+        <li><a href="skincare.html">Skin Care</a></li>
+        <li><a href="hair.html">Hair Care</a></li>
+        <li><a href="fragrance.html">Fragrance</a></li>
+      </ul>
+    </div>
+
+    <!-- CUSTOMER SUPPORT -->
+    <div class="footer-col">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="support.html">Help Center</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+        <li><a href="return.html">Returns & Refunds</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-col">
+      <h3>Subscribe</h3>
+      <p>Get updates on new products & offers</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+
+      <div class="social-icons">
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    <p>© 2026 Luxe Beauty. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer{
+  background: linear-gradient(90deg,#ff4fa3,#e754a6);
+  color:white;
+  padding:50px 40px 20px;
+  margin-top:40px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+
+.footer-logo{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+}
+
+.footer-col ul li a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  padding-left:5px;
+  opacity:0.9;
+}
+
+.newsletter{
+  display:flex;
+  margin-top:10px;
+}
+
+.newsletter input{
+  padding:10px;
+  border:none;
+  outline:none;
+  border-radius:6px 0 0 6px;
+  width:100%;
+}
+
+.newsletter button{
+  background:#fff;
+  color:#ff4fa3;
+  border:none;
+  padding:10px 15px;
+  border-radius:0 6px 6px 0;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.social-icons{
+  margin-top:15px;
+  font-size:20px;
+  display:flex;
+  gap:15px;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.3);
+  margin-top:30px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .footer{
+    text-align:center;
+  }
+  .newsletter{
+    flex-direction:column;
+  }
+  .newsletter input{
+    border-radius:6px;
+    margin-bottom:10px;
+  }
+  .newsletter button{
+    border-radius:6px;
+  }
+}
+</style>
+<!-- ===== SIDEBAR CART START ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <span class="close-cart" id="closeCart">✕</span>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-content">
+    <p class="empty-cart">Your cart is empty</p>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <div class="cart-total">
+      Total: <strong>Rs. 0</strong>
+    </div>
+    <a href="checkout.html" class="btn-primary">Checkout</a>
+
+  </div>
+
+</aside>
+<!-- ===== SIDEBAR CART END ===== -->
+ <script>
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+
+// Open Cart
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// Close Cart (X button)
+closeCart.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+// Close when clicking overlay
+overlay.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const overlay = document.getElementById("cartOverlay");
+const cartContent = document.querySelector(".cart-content");
+const cartTotal = document.querySelector(".cart-total strong");
+
+let cart = JSON.parse(localStorage.getItem("luxeCart")) || [];
+let total = 0;
+
+// OPEN CART
+cartBtn.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+// CLOSE CART
+function closeCartFunc(){
+  cartSidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+closeCart.addEventListener("click", closeCartFunc);
+overlay.addEventListener("click", closeCartFunc);
+
+// SAVE CART
+function saveCart(){
+  localStorage.setItem("luxeCart", JSON.stringify(cart));
+}
+
+// UPDATE TOTAL
+function updateTotal(){
+  total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+  cartTotal.innerText = "Rs. " + total;
+}
+
+// RENDER CART
+function renderCart(){
+  cartContent.innerHTML = "";
+
+  if(cart.length === 0){
+    cartContent.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+    cartTotal.innerText = "Rs. 0";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.gap = "10px";
+    div.style.marginBottom = "15px";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <img src="${item.image}" width="60" height="60" style="border-radius:8px;">
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:bold">${item.name}</div>
+        <div style="color:#ff4fa3;font-weight:bold">Rs. ${item.price}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+          <button class="minus">-</button>
+          <span>${item.qty}</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    `;
+
+    // PLUS
+    div.querySelector(".plus").onclick = () => {
+      cart[index].qty++;
+      saveCart();
+      renderCart();
+    };
+
+    // MINUS
+    div.querySelector(".minus").onclick = () => {
+      cart[index].qty--;
+      if(cart[index].qty <= 0){
+        cart.splice(index,1);
+      }
+      saveCart();
+      renderCart();
+    };
+
+    cartContent.appendChild(div);
+  });
+
+  updateTotal();
+}
+
+// ADD TO CART
+document.querySelectorAll(".btn").forEach(btn => {
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    const card = this.closest(".card");
+    const name = card.querySelector("h3").innerText;
+    const priceText = card.querySelector(".price").innerText;
+    const price = parseInt(priceText.replace(/[^0-9]/g, ""));
+    const image = card.querySelector("img").src;
+
+    const existing = cart.find(item => item.name === name);
+
+    if(existing){
+      existing.qty++;
+    }else{
+      cart.push({
+        name: name,
+        price: price,
+        image: image,
+        qty: 1
+      });
+    }
+
+    saveCart();
+    renderCart();
+
+    cartSidebar.classList.add("active");
+    overlay.classList.add("active");
+  });
+});
+
+// LOAD CART ON PAGE OPEN
+renderCart();
+
+});
+</script>
+</body>
+</html>
